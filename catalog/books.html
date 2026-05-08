@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Libros</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-active="books" data-title="Catálogo · Libros" data-depth="1">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="../dashboard.html">Inicio</a> · Catálogo · Libros</div>
+      <h1>Libros</h1>
+    </div>
+    <div>
+      <a class="btn" href="book-import.html">⇪ Importar</a>
+      <a class="btn btn-primary" href="book-form.html">+ Nuevo libro</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <input class="grow" type="search" placeholder="Buscar por ISBN, título, autor…">
+      <select><option>Todas las categorías</option><option>Novela</option><option>Poesía</option><option>Ensayo</option></select>
+      <select><option>Todas las editoriales</option><option>Sudamericana</option><option>Anagrama</option></select>
+      <select><option>Estado: Activos</option><option>Inactivos</option><option>Todos</option></select>
+      <button class="btn">Filtros</button>
+    </div>
+
+    <div style="margin-bottom:12px">
+      <span class="chip">Categoría: Novela ✕</span>
+      <span class="chip">Stock crítico ✕</span>
+    </div>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th><input type="checkbox"></th>
+          <th>ISBN</th>
+          <th>Título</th>
+          <th>Autor(es)</th>
+          <th>Editorial</th>
+          <th>Categoría</th>
+          <th class="num">Precio</th>
+          <th class="num">Stock</th>
+          <th>Estado</th>
+          <th class="actions">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><input type="checkbox"></td><td>978-84-376-0494-7</td><td><a href="book-form.html">Cien años de soledad</a></td><td>Gabriel García Márquez</td><td>Sudamericana</td><td>Novela</td><td class="num">$ 25,00</td><td class="num"><span class="badge danger">3</span></td><td><span class="badge success">Activo</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td><input type="checkbox"></td><td>978-84-339-7239-9</td><td><a href="book-form.html">Pedro Páramo</a></td><td>Juan Rulfo</td><td>Anagrama</td><td>Novela</td><td class="num">$ 18,50</td><td class="num">42</td><td><span class="badge success">Activo</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td><input type="checkbox"></td><td>978-84-204-8163-2</td><td><a href="book-form.html">La fiesta del chivo</a></td><td>Mario Vargas Llosa</td><td>Alfaguara</td><td>Novela</td><td class="num">$ 22,00</td><td class="num"><span class="badge warning">5</span></td><td><span class="badge success">Activo</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td><input type="checkbox"></td><td>978-84-339-6885-9</td><td><a href="book-form.html">2666</a></td><td>Roberto Bolaño</td><td>Anagrama</td><td>Novela</td><td class="num">$ 28,00</td><td class="num"><span class="badge danger">0</span></td><td><span class="badge success">Activo</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td><input type="checkbox"></td><td>978-987-04-0001-5</td><td><a href="book-form.html">Rayuela</a></td><td>Julio Cortázar</td><td>Sudamericana</td><td>Novela</td><td class="num">$ 24,00</td><td class="num">76</td><td><span class="badge success">Activo</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td><input type="checkbox"></td><td>978-84-339-1234-5</td><td><a href="book-form.html">Ficciones</a></td><td>Jorge Luis Borges</td><td>Emecé</td><td>Cuento</td><td class="num">$ 19,00</td><td class="num">61</td><td><span class="badge success">Activo</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td><input type="checkbox"></td><td>978-958-04-8030-2</td><td><a href="book-form.html">El amor en los tiempos del cólera</a></td><td>Gabriel García Márquez</td><td>Norma</td><td>Novela</td><td class="num">$ 26,00</td><td class="num"><span class="badge danger">2</span></td><td><span class="badge success">Activo</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td><input type="checkbox"></td><td>978-84-376-0001-0</td><td><a href="book-form.html">La ciudad y los perros</a></td><td>Mario Vargas Llosa</td><td>Seix Barral</td><td>Novela</td><td class="num">$ 20,00</td><td class="num">54</td><td><span class="badge success">Activo</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <div>Mostrando 1–8 de 1.247</div>
+      <div class="pages">
+        <a href="#">«</a><a class="active" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">…</a><a href="#">156</a><a href="#">»</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/shell.js"></script>
+</body>
+</html>

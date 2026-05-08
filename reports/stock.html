@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Reporte de stock</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body data-active="reports" data-title="Reportes · Stock" data-depth="1">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="../dashboard.html">Inicio</a> · <a href="index.html">Reportes</a> · Stock</div>
+      <h1>Reporte de stock</h1>
+    </div>
+    <div>
+      <button class="btn">⇩ Excel</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="form-grid">
+      <div class="field"><label>Bodega</label><select><option>Todas</option><option>Central</option><option>Norte</option><option>Sur</option></select></div>
+      <div class="field"><label>Categoría</label><select><option>Todas</option><option>Novela</option></select></div>
+      <div class="field"><label>Editorial</label><select><option>Todas</option></select></div>
+      <div class="field"><label>Estado</label><select><option>Todos</option><option>Crítico</option><option>Agotado</option><option>Normal</option></select></div>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="label">Productos</div><div class="value">1.198</div></div>
+    <div class="kpi"><div class="label">Unidades</div><div class="value">12.847</div></div>
+    <div class="kpi"><div class="label">Valor inventario</div><div class="value">$ 184.520</div></div>
+    <div class="kpi"><div class="label">Crítico / Agotado</div><div class="value" style="color:var(--color-warning)">17 / 4</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Distribución por categoría</h3>
+    <canvas id="chartStockCat" height="110"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Detalle</h3>
+    <table class="data">
+      <thead><tr><th>ISBN</th><th>Título</th><th>Categoría</th><th class="num">Stock</th><th class="num">Mín.</th><th class="num">Costo prom.</th><th class="num">Valor</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td>978-84-376-0494-7</td><td>Cien años de soledad</td><td>Novela</td><td class="num">15</td><td class="num">10</td><td class="num">$ 14,00</td><td class="num">$ 210,00</td><td><span class="badge warning">Bajo</span></td></tr>
+        <tr><td>978-84-339-7239-9</td><td>Pedro Páramo</td><td>Novela</td><td class="num">42</td><td class="num">10</td><td class="num">$ 12,50</td><td class="num">$ 525,00</td><td><span class="badge success">Normal</span></td></tr>
+        <tr><td>978-84-339-6885-9</td><td>2666</td><td>Novela</td><td class="num">0</td><td class="num">5</td><td class="num">$ 16,00</td><td class="num">$ 0,00</td><td><span class="badge danger">Agotado</span></td></tr>
+        <tr><td>978-987-04-0001-5</td><td>Rayuela</td><td>Novela</td><td class="num">76</td><td class="num">15</td><td class="num">$ 13,80</td><td class="num">$ 1.048,80</td><td><span class="badge success">Normal</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="../assets/shell.js"></script>
+  <script>
+    new Chart(document.getElementById('chartStockCat'), {
+      type: 'bar',
+      data: {
+        labels: ['Novela', 'Ensayo', 'Infantil', 'Poesía', 'Historia', 'Ciencia', 'Otros'],
+        datasets: [
+          {
+            label: 'Stock normal',
+            data: [3800, 2100, 1700, 1050, 880, 640, 1920],
+            backgroundColor: 'rgba(46,134,171,0.8)',
+            borderRadius: 4,
+            stack: 's'
+          },
+          {
+            label: 'Stock crítico',
+            data: [480, 210, 150, 190, 100, 80, 267],
+            backgroundColor: 'rgba(198,40,40,0.75)',
+            borderRadius: 4,
+            stack: 's'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          legend: { position: 'top', labels: { font: { size: 11 } } },
+          tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.x.toLocaleString('es') + ' u.' } }
+        },
+        scales: {
+          x: { stacked: true, grid: { color: '#E2E8F0' }, ticks: { font: { size: 11 } } },
+          y: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

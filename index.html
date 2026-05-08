@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Prototipos</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .hero {
+      background: linear-gradient(135deg, #1F4E79 0%, #2E86AB 100%);
+      color: #fff; padding: 48px 32px; border-radius: 12px; margin-bottom: 32px;
+    }
+    .hero h1 { margin: 0 0 8px; font-size: 36px; letter-spacing: 2px; }
+    .hero p  { margin: 0; opacity: .9; max-width: 700px; }
+
+    .grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+    .tile {
+      background: #fff; border: 1px solid var(--color-border);
+      border-radius: 10px; padding: 18px; box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column; gap: 6px;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .tile:hover { transform: translateY(-2px); box-shadow: var(--shadow); text-decoration: none; }
+    .tile h3 { margin: 0; color: var(--color-primary); font-size: 16px; }
+    .tile p  { margin: 0; color: var(--color-text-muted); font-size: 13px; }
+    .section-title {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--color-text-muted); margin: 32px 0 12px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 32px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>ORIOLE · Prototipos</h1>
+      <p>Prototipos navegables de todas las pantallas del sistema de inventario editorial,
+         basados en los lineamientos UX/UI del proyecto.</p>
+    </div>
+
+    <div class="section-title">Acceso</div>
+    <div class="grid">
+      <a class="tile" href="login.html"><h3>Login</h3><p>Pantalla de autenticación con recuperación de contraseña.</p></a>
+      <a class="tile" href="forgot-password.html"><h3>Recuperar contraseña</h3><p>Solicitud de envío por correo.</p></a>
+    </div>
+
+    <div class="section-title">Principal</div>
+    <div class="grid">
+      <a class="tile" href="dashboard.html"><h3>Dashboard gerencial</h3><p>KPIs, alertas de stock crítico, top productos y rotación.</p></a>
+      <a class="tile" href="dashboard-warehouse.html"><h3>Dashboard bodeguero</h3><p>Tareas pendientes, recepciones, stock crítico y conteos.</p></a>
+      <a class="tile" href="notifications/center.html"><h3>Notificaciones</h3><p>Centro de avisos: stock crítico, OC, ajustes.</p></a>
+      <a class="tile" href="notifications/preferences.html"><h3>Preferencias de notificación</h3><p>Matriz de eventos × canales (app/email/push).</p></a>
+    </div>
+
+    <div class="section-title">Catálogo</div>
+    <div class="grid">
+      <a class="tile" href="catalog/books.html"><h3>Libros</h3><p>Listado con búsqueda, filtros y paginación.</p></a>
+      <a class="tile" href="catalog/book-form.html"><h3>Libro · Nuevo / Editar</h3><p>Formulario completo con metadatos, autores y portada.</p></a>
+      <a class="tile" href="catalog/book-import.html"><h3>Importación masiva</h3><p>Carga desde Excel/CSV con reporte de errores.</p></a>
+      <a class="tile" href="catalog/authors.html"><h3>Autores</h3><p>Gestión de autores y co-autores.</p></a>
+      <a class="tile" href="catalog/publishers.html"><h3>Editoriales</h3><p>Catálogo de editoriales.</p></a>
+      <a class="tile" href="catalog/categories.html"><h3>Categorías</h3><p>Categorías jerárquicas.</p></a>
+      <a class="tile" href="catalog/barcodes.html"><h3>Etiquetas y códigos de barras</h3><p>Generación de etiquetas EAN-13 / Code 128 / QR.</p></a>
+    </div>
+
+    <div class="section-title">Compras</div>
+    <div class="grid">
+      <a class="tile" href="purchases/list.html"><h3>Órdenes de compra</h3><p>Listado, estados y seguimiento de OCs.</p></a>
+      <a class="tile" href="purchases/form.html"><h3>Nueva OC</h3><p>Formulario completo con ítems y resumen.</p></a>
+      <a class="tile" href="purchases/reception.html"><h3>Recepción de mercadería</h3><p>Recepción total o parcial con costo promedio.</p></a>
+      <a class="tile" href="purchases/detail.html"><h3>Detalle de OC</h3><p>Información, ítems, recepciones y avance.</p></a>
+      <a class="tile" href="purchases/suppliers.html"><h3>Proveedores</h3><p>Maestro con OCs activas y saldos.</p></a>
+    </div>
+
+    <div class="section-title">Inventario</div>
+    <div class="grid">
+      <a class="tile" href="inventory/stock.html"><h3>Stock por bodega</h3><p>Existencias consolidadas con alertas visuales.</p></a>
+      <a class="tile" href="inventory/movements.html"><h3>Movimientos</h3><p>Histórico transaccional filtrable.</p></a>
+      <a class="tile" href="inventory/movement-in.html"><h3>Entrada de stock</h3><p>Registro de ingreso de mercadería.</p></a>
+      <a class="tile" href="inventory/movement-out.html"><h3>Salida de stock</h3><p>Egreso operativo: consumo, donación, muestra.</p></a>
+      <a class="tile" href="inventory/movement-transfer.html"><h3>Traslado entre bodegas</h3><p>Egreso por traslado: salida en origen + entrada en destino.</p></a>
+      <a class="tile" href="inventory/movement-adjust.html"><h3>Ajuste de inventario</h3><p>Egreso por ajuste con motivo tipificado (merma, rotura, deterioro…).</p></a>
+      <a class="tile" href="inventory/warehouses.html"><h3>Bodegas</h3><p>Bodegas y ubicaciones internas.</p></a>
+      <a class="tile" href="inventory/kardex.html"><h3>Kardex</h3><p>Histórico cronológico por libro con saldos.</p></a>
+      <a class="tile" href="inventory/physical-count.html"><h3>Inventario físico</h3><p>Toma de inventario con captura y ajuste masivo.</p></a>
+      <a class="tile" href="inventory/replenishment.html"><h3>Reabastecimiento sugerido</h3><p>Productos bajo punto de reorden y generación automática de OC.</p></a>
+    </div>
+
+    <div class="section-title">Análisis</div>
+    <div class="grid">
+      <a class="tile" href="reports/index.html"><h3>Reportes</h3><p>Galería de reportes operativos y gerenciales.</p></a>
+      <a class="tile" href="reports/stock.html"><h3>Reporte de stock</h3><p>Stock actual y crítico.</p></a>
+      <a class="tile" href="audit.html"><h3>Auditoría</h3><p>Trazabilidad de operaciones críticas.</p></a>
+    </div>
+
+    <div class="section-title">Administración</div>
+    <div class="grid">
+      <a class="tile" href="users/list.html"><h3>Usuarios</h3><p>Gestión de usuarios.</p></a>
+      <a class="tile" href="users/user-form.html"><h3>Usuario · Nuevo / Editar</h3><p>Formulario con asignación de roles.</p></a>
+      <a class="tile" href="users/roles.html"><h3>Roles y permisos</h3><p>RBAC con matriz de permisos.</p></a>
+      <a class="tile" href="settings.html"><h3>Configuración</h3><p>Empresa, documentos, monedas, impuestos.</p></a>
+    </div>
+
+    <div class="section-title">App instalable</div>
+    <div class="grid">
+      <a class="tile" href="install.html"><h3>Instalación PWA</h3><p>Promo de instalación contextual.</p></a>
+    </div>
+
+    <hr>
+    <p class="text-muted" style="text-align:center;font-size:12px">
+      ORIOLE · Prototipos · Generados a partir de la documentación oficial.
+    </p>
+  </div>
+</body>
+</html>

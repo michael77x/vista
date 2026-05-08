@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Empresas</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-active="tenants" data-title="Administración · Empresas" data-depth="0">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="dashboard.html">Inicio</a> · Administración · Empresas</div>
+      <h1>Empresas</h1>
+    </div>
+    <button class="btn btn-primary">+ Nueva empresa</button>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="label">Empresas activas</div>
+      <div class="value">3</div>
+      <div class="delta">Todas con operación reciente</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Usuarios multiempresa</div>
+      <div class="value">6</div>
+      <div class="delta">2 administradores globales</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Tenants suspendidos</div>
+      <div class="value">0</div>
+      <div class="delta">Sin alertas</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <input class="grow" type="search" placeholder="Buscar por razón social, código o identificación fiscal…">
+      <select><option>Todos los estados</option><option>Activas</option><option>Suspendidas</option><option>Prueba</option></select>
+      <select><option>Todos los países</option><option>Perú</option><option>Colombia</option><option>México</option></select>
+    </div>
+    <table class="data">
+      <thead>
+        <tr><th>Empresa</th><th>Código</th><th>Tax ID</th><th>País</th><th>Moneda base</th><th>Usuarios</th><th>Estado</th><th class="actions"></th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Editorial Oriole S.A.</strong><br><span class="text-muted">Editorial Demo</span></td><td>editorial-demo</td><td>20543210987</td><td>PE</td><td>PEN</td><td>12</td><td><span class="badge success">Activa</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td><strong>Oriole Académica Ltda.</strong><br><span class="text-muted">Oriole Académica</span></td><td>oriole-academica</td><td>901234567-8</td><td>CO</td><td>COP</td><td>8</td><td><span class="badge success">Activa</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td><strong>Distribuidora Norte S.A.C.</strong><br><span class="text-muted">Distribuidora Norte</span></td><td>dist-norte</td><td>20678945123</td><td>PE</td><td>USD</td><td>5</td><td><span class="badge info">Prueba</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col card" style="min-width:420px">
+      <h3>Nueva empresa</h3>
+      <div class="form-grid">
+        <div class="field"><label>Razón social *</label><input value="Nueva Editorial S.A."></div>
+        <div class="field"><label>Nombre comercial *</label><input value="Nueva Editorial"></div>
+        <div class="field"><label>Código *</label><input value="nueva-editorial"></div>
+        <div class="field"><label>RUC / NIT / Tax ID *</label><input value="20987654321"></div>
+        <div class="field"><label>País</label><select><option>Perú</option><option>Colombia</option><option>México</option></select></div>
+        <div class="field"><label>Moneda base</label><select><option>PEN</option><option>USD</option><option>COP</option><option>MXN</option></select></div>
+        <div class="field"><label>Zona horaria</label><select><option>America/Lima</option><option>America/Bogota</option><option>America/Mexico_City</option></select></div>
+        <div class="field"><label>Estado inicial</label><select><option>Activa</option><option>Prueba</option></select></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn">Cancelar</button>
+        <button class="btn btn-primary">Crear empresa</button>
+      </div>
+    </div>
+    <div class="col card" style="max-width:360px">
+      <h3>Semillas iniciales</h3>
+      <p class="text-muted" style="font-size:13px">Al crear una empresa se preparan roles base, moneda, tipos de documento, bodega principal y parámetros operativos aislados.</p>
+      <ul style="margin:0;padding-left:18px;color:var(--color-text-muted);font-size:13px">
+        <li>Roles: Administrador, Operador, Auditor, Consulta</li>
+        <li>Numeración independiente por tipo de documento</li>
+        <li>Auditoría con TenantId desde la primera operación</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="assets/shell.js"></script>
+</body>
+</html>

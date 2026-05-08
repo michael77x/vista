@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Salida de stock</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-active="movements" data-title="Inventario · Salida" data-depth="1">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="../dashboard.html">Inicio</a> · <a href="movements.html">Movimientos</a> · Salida</div>
+      <h1>Salida de inventario</h1>
+    </div>
+    <div>
+      <button class="btn">Cancelar</button>
+      <button class="btn btn-warning">Confirmar salida</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Información del documento</h3>
+    <div class="form-grid">
+      <div class="field"><label>Tipo *</label>
+        <select><option>Salida interna</option><option>Merma</option><option>Donación</option><option>Muestra</option></select>
+      </div>
+      <div class="field"><label>N° documento</label><input value="OUT-2026-0143" disabled></div>
+      <div class="field"><label>Fecha *</label><input type="date" value="2026-05-05"></div>
+      <div class="field"><label>Bodega origen *</label>
+        <select><option>Central</option><option>Norte</option><option>Sur</option></select>
+      </div>
+      <div class="field" style="grid-column:1/-1"><label>Motivo *</label><input placeholder="Indique el motivo de la salida"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="display:flex;justify-content:space-between">
+      Ítems <button class="btn btn-primary btn-sm">+ Agregar ítem</button>
+    </h3>
+    <table class="data">
+      <thead>
+        <tr>
+          <th>ISBN</th><th>Título</th><th class="num">Stock disponible</th>
+          <th class="num">Cantidad</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input value="978-84-339-7239-9" style="width:160px"></td>
+          <td>Pedro Páramo</td>
+          <td class="num">22</td>
+          <td class="num"><input type="number" value="2" style="width:80px;text-align:right"></td>
+          <td><button class="btn btn-sm btn-danger">✕</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-muted" style="font-size:12px;margin-top:8px">
+      ⚠ Si la cantidad excede el stock disponible, el sistema rechazará la operación.
+    </p>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn">Cancelar</button>
+    <button class="btn btn-warning">Confirmar salida</button>
+  </div>
+
+  <script src="../assets/shell.js"></script>
+</body>
+</html>

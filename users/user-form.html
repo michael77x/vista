@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Editar usuario</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-active="users" data-title="Administración · Usuario" data-depth="1">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="../dashboard.html">Inicio</a> · <a href="list.html">Usuarios</a> · Editar</div>
+      <h1>Editar usuario</h1>
+    </div>
+    <div>
+      <a class="btn" href="list.html">Cancelar</a>
+      <button class="btn btn-primary">Guardar</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col" style="min-width:480px">
+      <div class="card">
+        <h3>Información personal</h3>
+        <div class="form-grid">
+          <div class="field"><label>Usuario *</label><input value="jperez"></div>
+          <div class="field"><label>Email *</label><input type="email" value="jperez@editorial.com"></div>
+          <div class="field"><label>Nombres *</label><input value="Juan"></div>
+          <div class="field"><label>Apellidos *</label><input value="Pérez"></div>
+          <div class="field"><label>Teléfono</label><input value="+51 999 111 222"></div>
+          <div class="field"><label>Estado</label>
+            <select><option>Activo</option><option>Inactivo</option><option>Bloqueado</option></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Empresas y roles</h3>
+        <p class="text-muted" style="font-size:13px;margin:0 0 12px">Cada empresa define sus propios roles para este usuario.</p>
+        <table class="data">
+          <thead><tr><th>Empresa</th><th>Estado</th><th>Roles</th><th>Predeterminada</th></tr></thead>
+          <tbody>
+            <tr><td>Editorial Demo</td><td><span class="badge success">Activa</span></td><td><span class="chip">Operador</span></td><td><input type="radio" name="defaultTenant" checked></td></tr>
+            <tr><td>Oriole Académica</td><td><span class="badge success">Activa</span></td><td><span class="chip">Consulta</span></td><td><input type="radio" name="defaultTenant"></td></tr>
+          </tbody>
+        </table>
+        <button class="btn btn-sm" style="margin-top:8px">+ Agregar empresa</button>
+      </div>
+
+      <div class="card">
+        <h3>Bodegas asignadas</h3>
+        <p class="text-muted" style="font-size:13px;margin:0 0 12px">Restringe las bodegas en las que el usuario puede operar dentro de la empresa activa.</p>
+        <div>
+          <label style="margin-right:16px"><input type="checkbox" checked> Central</label>
+          <label style="margin-right:16px"><input type="checkbox" checked> Norte</label>
+          <label style="margin-right:16px"><input type="checkbox"> Sur</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col" style="max-width:320px;min-width:280px">
+      <div class="card">
+        <h3>Seguridad</h3>
+        <p class="text-muted" style="font-size:12px">Última sesión: <strong>05/05/26 08:45</strong></p>
+        <p class="text-muted" style="font-size:12px">Intentos fallidos: <strong>0</strong></p>
+        <button class="btn" style="width:100%;justify-content:center;margin-bottom:8px">🔑 Restablecer contraseña</button>
+        <button class="btn btn-warning" style="width:100%;justify-content:center;margin-bottom:8px">⏸ Suspender</button>
+        <button class="btn btn-danger" style="width:100%;justify-content:center">🗑 Desactivar</button>
+      </div>
+
+      <div class="card">
+        <h3>Auditoría</h3>
+        <p class="text-muted" style="font-size:12px">Creado por <strong>admin</strong> el 04/05/26 15:33</p>
+        <p class="text-muted" style="font-size:12px">Modificado por <strong>admin</strong> el 04/05/26 15:33</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/shell.js"></script>
+</body>
+</html>

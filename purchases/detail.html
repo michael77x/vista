@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Detalle OC</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-active="purchase-orders" data-title="Compras · OC" data-depth="1">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="../dashboard.html">Inicio</a> · <a href="list.html">Órdenes</a> · OC-2026-0048</div>
+      <h1>OC-2026-0048 <span class="badge warning" style="vertical-align:middle">Recepción parcial</span></h1>
+    </div>
+    <div>
+      <a class="btn" href="reception.html">Recibir mercadería</a>
+      <button class="btn btn-danger">Cancelar OC</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col" style="min-width:480px">
+      <div class="card">
+        <h3>Información</h3>
+        <table style="width:100%;font-size:14px">
+          <tr><td class="text-muted">Proveedor</td><td><strong>Anagrama</strong></td></tr>
+          <tr><td class="text-muted">Bodega destino</td><td>Central</td></tr>
+          <tr><td class="text-muted">Fecha emisión</td><td>03/05/2026</td></tr>
+          <tr><td class="text-muted">Fecha esperada</td><td>15/05/2026</td></tr>
+          <tr><td class="text-muted">Solicitada por</td><td>mlopez</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Ítems</h3>
+        <table class="data">
+          <thead><tr><th>Libro</th><th class="num">Pedido</th><th class="num">Recibido</th><th class="num">Pendiente</th><th class="num">Costo</th><th class="num">Subtotal</th></tr></thead>
+          <tbody>
+            <tr><td>Cien años de soledad</td><td class="num">50</td><td class="num">30</td><td class="num">20</td><td class="num">$ 14,00</td><td class="num">$ 700,00</td></tr>
+            <tr><td>Pedro Páramo</td><td class="num">30</td><td class="num">30</td><td class="num">0</td><td class="num">$ 12,50</td><td class="num">$ 375,00</td></tr>
+            <tr><td>Rayuela</td><td class="num">25</td><td class="num">0</td><td class="num">25</td><td class="num">$ 13,80</td><td class="num">$ 345,00</td></tr>
+            <tr><td>Ficciones</td><td class="num">10</td><td class="num">0</td><td class="num">10</td><td class="num">$ 11,00</td><td class="num">$ 110,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Recepciones registradas</h3>
+        <table class="data">
+          <thead><tr><th>Fecha</th><th>N° factura</th><th class="num">Ítems</th><th>Usuario</th></tr></thead>
+          <tbody>
+            <tr><td>04/05/26 11:20</td><td>F-2026-0185</td><td class="num">2</td><td>mlopez</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col" style="max-width:320px;min-width:260px">
+      <div class="card">
+        <h3>Resumen</h3>
+        <table style="width:100%;font-size:14px">
+          <tr><td>Subtotal</td><td class="num">$ 1.530,00</td></tr>
+          <tr><td>Impuestos</td><td class="num">$ 0,00</td></tr>
+          <tr><td><strong>Total OC</strong></td><td class="num"><strong style="color:var(--color-primary);font-size:18px">$ 1.530,00</strong></td></tr>
+        </table>
+        <hr>
+        <p class="text-muted" style="font-size:13px">Recibido: <strong>$ 575,00 (37,5 %)</strong></p>
+        <div style="background:var(--color-bg);border-radius:6px;height:8px;overflow:hidden">
+          <div style="background:var(--color-warning);width:37.5%;height:100%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/shell.js"></script>
+</body>
+</html>

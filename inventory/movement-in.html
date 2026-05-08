@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Entrada de stock</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-active="movements" data-title="Inventario · Entrada" data-depth="1">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="../dashboard.html">Inicio</a> · <a href="movements.html">Movimientos</a> · Entrada</div>
+      <h1>Entrada de inventario</h1>
+    </div>
+    <div>
+      <button class="btn">Cancelar</button>
+      <button class="btn btn-success">Confirmar entrada</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Información del documento</h3>
+    <div class="form-grid">
+      <div class="field"><label>Tipo de documento *</label>
+        <select><option>Compra</option><option>Devolución de cliente</option><option>Donación</option></select>
+      </div>
+      <div class="field"><label>N° documento</label><input value="IN-2026-0382" disabled></div>
+      <div class="field"><label>Fecha *</label><input type="date" value="2026-05-05"></div>
+      <div class="field"><label>Bodega destino *</label>
+        <select><option>Central</option><option>Norte</option><option>Sur</option></select>
+      </div>
+      <div class="field"><label>Proveedor (opc.)</label><input value="Editorial Sudamericana"></div>
+      <div class="field"><label>Referencia externa</label><input placeholder="N° factura proveedor"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="display:flex;justify-content:space-between">
+      Ítems
+      <button class="btn btn-primary btn-sm">+ Agregar ítem</button>
+    </h3>
+    <table class="data">
+      <thead>
+        <tr>
+          <th>ISBN / Buscar libro</th>
+          <th>Título</th>
+          <th>Ubicación</th>
+          <th class="num">Cantidad</th>
+          <th class="num">Costo unit.</th>
+          <th class="num">Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input value="978-84-339-7239-9" style="width:160px"></td>
+          <td>Pedro Páramo</td>
+          <td><select><option>A1-01</option><option>A1-02</option></select></td>
+          <td class="num"><input type="number" value="40" style="width:80px;text-align:right"></td>
+          <td class="num"><input type="number" value="12.50" style="width:90px;text-align:right"></td>
+          <td class="num">$ 500,00</td>
+          <td><button class="btn btn-sm btn-danger">✕</button></td>
+        </tr>
+        <tr>
+          <td><input value="978-84-376-0494-7" style="width:160px"></td>
+          <td>Cien años de soledad</td>
+          <td><select><option>A1-04</option></select></td>
+          <td class="num"><input type="number" value="20" style="width:80px;text-align:right"></td>
+          <td class="num"><input type="number" value="15.00" style="width:90px;text-align:right"></td>
+          <td class="num">$ 300,00</td>
+          <td><button class="btn btn-sm btn-danger">✕</button></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr><td colspan="3"></td><td class="num"><strong>60</strong></td><td></td><td class="num"><strong>$ 800,00</strong></td><td></td></tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Observaciones</h3>
+    <textarea rows="3" style="width:100%;border:1px solid var(--color-border);border-radius:8px;padding:10px"
+              placeholder="Notas internas (opcional)"></textarea>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn">Guardar como borrador</button>
+    <button class="btn btn-success">Confirmar entrada</button>
+  </div>
+
+  <script src="../assets/shell.js"></script>
+</body>
+</html>

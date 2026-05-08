@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Configuración</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-active="settings" data-title="Configuración" data-depth="0">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="dashboard.html">Inicio</a> · Configuración · Editorial Demo</div>
+      <h1>Configuración de empresa</h1>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Perfil de empresa activa <span class="badge info">Editorial Demo</span></h3>
+    <div class="form-grid">
+      <div class="field"><label>Razón social</label><input value="Editorial Oriole S.A."></div>
+      <div class="field"><label>Nombre comercial</label><input value="Editorial Oriole"></div>
+      <div class="field"><label>RUC / NIT / Tax ID</label><input value="20543210987"></div>
+      <div class="field"><label>Dirección fiscal</label><input value="Av. Principal 123, Lima"></div>
+      <div class="field"><label>Teléfono</label><input value="+51 1 234-5678"></div>
+      <div class="field"><label>Email contacto</label><input value="contacto@oriole.com"></div>
+      <div class="field" style="grid-column:1/-1"><label>Logo</label>
+        <div style="border:1px dashed var(--color-border);padding:24px;text-align:center;border-radius:6px;color:var(--color-muted)">
+          Arrastra una imagen o haz clic para subir (PNG/SVG, máx 1 MB)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Tipos de documento <span class="badge info">Numeración por empresa</span></h3>
+    <table class="data">
+      <thead><tr><th>Tipo</th><th>Código</th><th>Serie</th><th class="num">Próximo número</th><th>Activo</th><th class="actions"></th></tr></thead>
+      <tbody>
+        <tr><td>Venta interna</td><td>VI</td><td>VI-2026</td><td class="num">0143</td><td><span class="badge success">Sí</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td>Entrada</td><td>IN</td><td>IN-2026</td><td class="num">0382</td><td><span class="badge success">Sí</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td>Salida</td><td>OUT</td><td>OUT-2026</td><td class="num">0143</td><td><span class="badge success">Sí</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td>Traslado</td><td>TR</td><td>TR-2026</td><td class="num">0045</td><td><span class="badge success">Sí</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td>Ajuste</td><td>ADJ</td><td>ADJ-2026</td><td class="num">0010</td><td><span class="badge success">Sí</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Monedas <span class="badge info">Configuración aislada</span></h3>
+    <table class="data">
+      <thead><tr><th>Código</th><th>Nombre</th><th>Símbolo</th><th>Predeterminada</th><th class="num">Tasa vs USD</th><th class="actions"></th></tr></thead>
+      <tbody>
+        <tr><td>USD</td><td>Dólar estadounidense</td><td>$</td><td><span class="badge success">Sí</span></td><td class="num">1,0000</td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td>PEN</td><td>Sol peruano</td><td>S/</td><td>—</td><td class="num">3,7500</td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td>EUR</td><td>Euro</td><td>€</td><td>—</td><td class="num">0,9200</td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+      </tbody>
+    </table>
+    <button class="btn btn-sm btn-primary" style="margin-top:8px">+ Agregar moneda</button>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--color-warning)">
+    <h3>Tasas de impuesto</h3>
+    <p class="text-muted" style="font-size:13px">Configurable desde ahora; se aplicará automáticamente al activar la facturación electrónica.</p>
+    <table class="data">
+      <thead><tr><th>Código</th><th>Nombre</th><th class="num">Tasa</th><th>Tipo</th><th>Activo</th><th class="actions"></th></tr></thead>
+      <tbody>
+        <tr><td>IGV18</td><td>IGV General</td><td class="num">18,00 %</td><td>Indirecto</td><td><span class="badge success">Sí</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+        <tr><td>IGV0</td><td>Exonerado</td><td class="num">0,00 %</td><td>Exoneración</td><td><span class="badge success">Sí</span></td><td class="actions"><button class="btn btn-sm">Editar</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Parámetros operativos de la empresa</h3>
+    <div class="form-grid">
+      <div class="field"><label>Zona horaria</label><select><option>America/Lima (UTC-5)</option><option>America/Bogota</option><option>America/Mexico_City</option></select></div>
+      <div class="field"><label>Idioma predeterminado</label><select><option>Español</option><option>English</option></select></div>
+      <div class="field"><label>Formato de fecha</label><select><option>DD/MM/YYYY</option><option>YYYY-MM-DD</option></select></div>
+      <div class="field"><label>Decimales en precios</label><select><option>2</option><option>4</option></select></div>
+      <div class="field"><label>Política de stock negativo</label>
+        <select><option>Bloquear</option><option>Permitir con advertencia</option></select>
+      </div>
+      <div class="field"><label>Sesión: timeout (min)</label><input type="number" value="60"></div>
+      <div class="field"><label>Empresa visible al ingresar</label><select><option>Usar última empresa activa</option><option>Editorial Demo</option></select></div>
+    </div>
+    <div class="form-actions" style="margin-top:16px">
+      <button class="btn">Cancelar</button>
+      <button class="btn btn-primary">Guardar cambios</button>
+    </div>
+  </div>
+
+  <script src="assets/shell.js"></script>
+</body>
+</html>

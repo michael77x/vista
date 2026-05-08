@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Órdenes de compra</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-active="purchase-orders" data-title="Compras · Órdenes de compra" data-depth="1">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="../dashboard.html">Inicio</a> · Compras · Órdenes</div>
+      <h1>Órdenes de compra</h1>
+    </div>
+    <a class="btn btn-primary" href="form.html">+ Nueva OC</a>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="label">Borrador</div><div class="value">3</div></div>
+    <div class="kpi"><div class="label">Enviadas</div><div class="value">8</div></div>
+    <div class="kpi"><div class="label">Recepción parcial</div><div class="value" style="color:var(--color-warning)">4</div></div>
+    <div class="kpi"><div class="label">Cerradas (mes)</div><div class="value">22</div></div>
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <input type="date" value="2026-04-01">
+      <input type="date" value="2026-05-05">
+      <select><option>Todos los proveedores</option><option>Anagrama</option><option>Sudamericana</option><option>Planeta</option></select>
+      <select><option>Todos los estados</option><option>Borrador</option><option>Enviada</option><option>Recepción parcial</option><option>Recibida</option><option>Cerrada</option><option>Cancelada</option></select>
+      <input class="grow" type="search" placeholder="N° OC o proveedor…">
+      <button class="btn btn-primary">Filtrar</button>
+    </div>
+    <table class="data">
+      <thead><tr><th>N° OC</th><th>Fecha</th><th>Proveedor</th><th>Bodega destino</th><th class="num">Ítems</th><th class="num">Total</th><th>Estado</th><th class="actions"></th></tr></thead>
+      <tbody>
+        <tr><td><a href="detail.html">OC-2026-0048</a></td><td>03/05/26</td><td>Anagrama</td><td>Central</td><td class="num">8</td><td class="num">$ 4.250,00</td><td><span class="badge warning">Recep. parcial</span></td><td class="actions"><a class="btn btn-sm" href="reception.html">Recibir</a></td></tr>
+        <tr><td><a href="detail.html">OC-2026-0047</a></td><td>02/05/26</td><td>Sudamericana</td><td>Norte</td><td class="num">12</td><td class="num">$ 6.180,00</td><td><span class="badge info">Enviada</span></td><td class="actions"><a class="btn btn-sm" href="reception.html">Recibir</a></td></tr>
+        <tr><td><a href="detail.html">OC-2026-0046</a></td><td>01/05/26</td><td>Planeta</td><td>Central</td><td class="num">15</td><td class="num">$ 8.940,00</td><td><span class="badge success">Recibida</span></td><td class="actions"><a class="btn btn-sm">Ver</a></td></tr>
+        <tr><td><a href="detail.html">OC-2026-0045</a></td><td>30/04/26</td><td>Anagrama</td><td>Central</td><td class="num">5</td><td class="num">$ 1.620,00</td><td><span class="badge">Borrador</span></td><td class="actions"><a class="btn btn-sm">Editar</a></td></tr>
+        <tr><td><a href="detail.html">OC-2026-0044</a></td><td>28/04/26</td><td>Sudamericana</td><td>Sur</td><td class="num">20</td><td class="num">$ 11.400,00</td><td><span class="badge success">Cerrada</span></td><td class="actions"><a class="btn btn-sm">Ver</a></td></tr>
+        <tr><td><a href="detail.html">OC-2026-0043</a></td><td>26/04/26</td><td>Planeta</td><td>Norte</td><td class="num">3</td><td class="num">$ 980,00</td><td><span class="badge danger">Cancelada</span></td><td class="actions"><a class="btn btn-sm">Ver</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="../assets/shell.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Etiquetas y códigos de barras</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body data-active="barcodes" data-title="Catálogo · Etiquetas" data-depth="1">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="../dashboard.html">Inicio</a> · Catálogo · Etiquetas</div>
+      <h1>Etiquetas y códigos de barras</h1>
+    </div>
+    <button class="btn btn-primary">⎙ Imprimir selección</button>
+  </div>
+
+  <div class="row">
+    <div class="col" style="min-width:480px">
+      <div class="card">
+        <h3>Generador</h3>
+        <div class="form-grid">
+          <div class="field"><label>Origen</label>
+            <select>
+              <option>Todo el catálogo</option>
+              <option>Stock en bodega…</option>
+              <option>Última recepción de OC</option>
+              <option>Selección manual</option>
+            </select>
+          </div>
+          <div class="field"><label>Formato</label>
+            <select><option>EAN-13 (ISBN)</option><option>Code 128 (interno)</option><option>QR</option></select>
+          </div>
+          <div class="field"><label>Plantilla de hoja</label>
+            <select>
+              <option>A4 — 24 etiquetas (3×8) · 70×35 mm</option>
+              <option>A4 — 21 etiquetas (3×7) · 70×42 mm</option>
+              <option>A4 — 65 etiquetas (5×13) · 38×21 mm</option>
+              <option>Rollo térmico — 50×30 mm</option>
+            </select>
+          </div>
+          <div class="field"><label>Mostrar</label>
+            <select><option>ISBN + título + precio</option><option>ISBN + título</option><option>Sólo código</option></select>
+          </div>
+          <div class="field"><label>Lista de precios</label>
+            <select><option>Minorista</option><option>Mayorista</option><option>Promocional Mayo 2026</option></select>
+          </div>
+          <div class="field"><label>Cantidad por libro</label><input type="number" value="1"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Selección</h3>
+        <div class="toolbar">
+          <input class="grow" type="search" placeholder="Buscar libros para imprimir…">
+          <button class="btn">+ Agregar</button>
+        </div>
+        <table class="data">
+          <thead><tr><th><input type="checkbox" checked></th><th>ISBN</th><th>Título</th><th class="num">Stock</th><th class="num">Etiquetas</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox" checked></td><td>978-84-376-0494-7</td><td>Cien años de soledad</td><td class="num">15</td><td class="num"><input type="number" value="15" style="width:60px;text-align:right"></td><td><button class="btn btn-sm btn-danger">✕</button></td></tr>
+            <tr><td><input type="checkbox" checked></td><td>978-84-339-7239-9</td><td>Pedro Páramo</td><td class="num">42</td><td class="num"><input type="number" value="10" style="width:60px;text-align:right"></td><td><button class="btn btn-sm btn-danger">✕</button></td></tr>
+            <tr><td><input type="checkbox"></td><td>978-987-04-0001-5</td><td>Rayuela</td><td class="num">76</td><td class="num"><input type="number" value="0" style="width:60px;text-align:right"></td><td><button class="btn btn-sm btn-danger">✕</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col" style="max-width:340px;min-width:260px">
+      <div class="card" style="position:sticky;top:72px">
+        <h3>Vista previa</h3>
+        <div style="background:#fff;border:1px solid var(--color-border);border-radius:6px;padding:12px;font-family:monospace;text-align:center">
+          <div style="font-size:11px;color:var(--color-muted)">Cien años de soledad</div>
+          <div style="background:repeating-linear-gradient(90deg,#000 0 2px,#fff 2px 4px,#000 4px 5px,#fff 5px 8px);height:36px;margin:6px 0"></div>
+          <div style="font-size:10px">9 788437 604947</div>
+          <div style="font-size:14px;font-weight:700;color:var(--color-primary);margin-top:4px">$ 25,00</div>
+        </div>
+        <p class="text-muted" style="font-size:12px;margin-top:8px">Total etiquetas: <strong>25</strong> · Hojas: <strong>2</strong></p>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">⎙ Generar PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/shell.js"></script>
+</body>
+</html>

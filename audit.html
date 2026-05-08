@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Auditoría</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-active="audit" data-title="Auditoría" data-depth="0">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="dashboard.html">Inicio</a> · Auditoría</div>
+      <h1>Registro de auditoría</h1>
+    </div>
+    <button class="btn">⇩ Exportar</button>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--color-secondary)">
+    <strong>🔒 Registro inmutable.</strong>
+    <span class="text-muted" style="font-size:13px"> Los registros de auditoría no pueden modificarse ni eliminarse. Cumplen con los requisitos de trazabilidad para la futura facturación electrónica.</span>
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <input type="date" value="2026-05-01">
+      <input type="date" value="2026-05-05">
+      <select><option>Todos los usuarios</option><option>admin</option><option>jperez</option><option>mlopez</option></select>
+      <select><option>Todas las acciones</option><option>Login</option><option>Crear</option><option>Actualizar</option><option>Eliminar</option><option>Anular</option></select>
+      <select><option>Todas las entidades</option><option>Book</option><option>Sale</option><option>StockMovement</option><option>User</option></select>
+      <input class="grow" type="search" placeholder="Buscar en payload, ID, IP…">
+      <button class="btn btn-primary">Filtrar</button>
+    </div>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Fecha</th><th>Usuario</th><th>Acción</th><th>Entidad</th><th>ID</th>
+          <th>IP</th><th>Correlation</th><th class="actions">Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>05/05/26 10:32:14</td><td>jperez</td><td><span class="badge info">Confirm</span></td><td>Sale</td><td>VI-2026-0142</td><td>192.168.1.45</td><td>a8f3…b21</td><td class="actions"><button class="btn btn-sm">Ver</button></td></tr>
+        <tr><td>05/05/26 10:31:02</td><td>jperez</td><td><span class="badge success">Create</span></td><td>Sale</td><td>VI-2026-0142</td><td>192.168.1.45</td><td>a8f3…b21</td><td class="actions"><button class="btn btn-sm">Ver</button></td></tr>
+        <tr><td>05/05/26 09:58:31</td><td>mlopez</td><td><span class="badge success">Create</span></td><td>StockMovement</td><td>IN-2026-0381</td><td>192.168.1.46</td><td>c1e2…f04</td><td class="actions"><button class="btn btn-sm">Ver</button></td></tr>
+        <tr><td>05/05/26 09:21:08</td><td>admin</td><td><span class="badge warning">Update</span></td><td>Book</td><td>978-84-339-7239-9</td><td>192.168.1.10</td><td>9d3e…a72</td><td class="actions"><button class="btn btn-sm">Ver</button></td></tr>
+        <tr><td>05/05/26 08:45:00</td><td>jperez</td><td><span class="badge">Login</span></td><td>User</td><td>jperez</td><td>192.168.1.45</td><td>—</td><td class="actions"><button class="btn btn-sm">Ver</button></td></tr>
+        <tr><td>04/05/26 18:04:22</td><td>jperez</td><td><span class="badge warning">Adjust</span></td><td>StockMovement</td><td>ADJ-2026-0009</td><td>192.168.1.45</td><td>4b2a…d18</td><td class="actions"><button class="btn btn-sm">Ver</button></td></tr>
+        <tr><td>04/05/26 16:11:09</td><td>mlopez</td><td><span class="badge info">Transfer</span></td><td>StockMovement</td><td>TR-2026-0044</td><td>192.168.1.46</td><td>7c4d…e90</td><td class="actions"><button class="btn btn-sm">Ver</button></td></tr>
+        <tr><td>04/05/26 15:33:41</td><td>admin</td><td><span class="badge success">Create</span></td><td>User</td><td>jperez</td><td>192.168.1.10</td><td>2f1b…c44</td><td class="actions"><button class="btn btn-sm">Ver</button></td></tr>
+        <tr><td>04/05/26 09:00:11</td><td>—</td><td><span class="badge danger">Login fail</span></td><td>User</td><td>desconocido</td><td>200.55.10.7</td><td>—</td><td class="actions"><button class="btn btn-sm">Ver</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="assets/shell.js"></script>
+</body>
+</html>

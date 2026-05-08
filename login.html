@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Iniciar sesión</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="mock-banner">Mockup estático — pulse cualquier botón para navegar al dashboard.</div>
+  <div class="center-screen">
+    <div class="auth-card">
+      <h1>ORIOLE</h1>
+      <p class="subtitle">Sistema multiempresa de inventario editorial</p>
+
+      <form onsubmit="event.preventDefault(); location.href='dashboard.html'">
+        <div class="field">
+          <label for="user">Usuario</label>
+          <input id="user" type="text" value="admin" autocomplete="username">
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label for="pwd">Contraseña</label>
+          <input id="pwd" type="password" value="••••••••" autocomplete="current-password">
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin:16px 0">
+          <label style="font-size:13px"><input type="checkbox"> Recordarme</label>
+          <a href="forgot-password.html" style="font-size:13px">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:10px">
+          Iniciar sesión
+        </button>
+      </form>
+
+      <p class="text-muted" style="font-size:12px;margin-top:16px;text-align:center">
+        Al ingresar se cargará la empresa predeterminada; los usuarios con varias empresas podrán cambiarla desde la barra superior.
+      </p>
+
+      <p class="text-muted" style="text-align:center;font-size:12px;margin-top:24px">
+        v1.0.0 · <a href="index.html">Volver a mockups</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

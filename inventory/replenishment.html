@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORIOLE — Reabastecimiento sugerido</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .qty-input {
+      width: 76px;
+      padding: 5px 8px;
+      font-size: 13px;
+      font-family: inherit;
+      text-align: right;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--color-text, #1e293b);
+      transition: border-color .15s, box-shadow .15s;
+      -moz-appearance: textfield;
+    }
+    .qty-input::-webkit-inner-spin-button,
+    .qty-input::-webkit-outer-spin-button { opacity: .4; }
+    .qty-input:focus {
+      outline: none;
+      border-color: var(--color-primary, #4f6ef7);
+      box-shadow: 0 0 0 3px rgba(79,110,247,.15);
+    }
+    .qty-input:hover { border-color: #9ca3af; }
+  </style>
+</head>
+<body data-active="replenishment" data-title="Inventario · Reabastecimiento sugerido" data-depth="1">
+
+  <div class="page-header">
+    <div>
+      <div class="breadcrumb"><a href="../dashboard.html">Inicio</a> · Inventario · Reabastecimiento</div>
+      <h1>Reabastecimiento sugerido</h1>
+      <p class="muted">Productos por debajo del punto de reorden. Selecciona los ítems y genera órdenes de compra agrupadas por proveedor.</p>
+    </div>
+    <div>
+      <button class="btn">⇩ Exportar</button>
+      <button class="btn btn-primary" id="btnGenerar">Generar OC con seleccionados (0)</button>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="label">Ítems bajo reorden</div><div class="value">23</div></div>
+    <div class="kpi"><div class="label">Críticos</div><div class="value" style="color:var(--color-warning)">11</div></div>
+    <div class="kpi"><div class="label">Agotados</div><div class="value" style="color:var(--color-danger)">4</div></div>
+    <div class="kpi"><div class="label">Proveedores involucrados</div><div class="value">7</div></div>
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <input class="grow" type="search" placeholder="Buscar libro o ISBN…">
+      <select>
+        <option>Todos los proveedores</option>
+        <option>Editorial Sudamericana</option>
+        <option>Editorial Anagrama</option>
+        <option>Editorial Planeta</option>
+      </select>
+      <select>
+        <option>Todas las categorías</option>
+        <option>Novela</option>
+        <option>Ensayo</option>
+        <option>Infantil</option>
+      </select>
+      <select>
+        <option>Estado: Todos</option>
+        <option>Agotado</option>
+        <option>Crítico</option>
+        <option>Bajo reorden</option>
+      </select>
+      <button class="btn">Aplicar filtros</button>
+    </div>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th style="width:36px"><input type="checkbox" id="selectAll"></th>
+          <th>ISBN</th>
+          <th>Título</th>
+          <th>Proveedor preferido</th>
+          <th class="num">Stock actual</th>
+          <th class="num">Punto de reorden</th>
+          <th class="num">Cant. sugerida</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr><td><input type="checkbox" class="row"></td><td>978-84-339-6885-9</td><td>2666</td><td>Editorial Anagrama</td><td class="num">0</td><td class="num">5</td><td class="num"><input type="number" value="20" min="1" class="qty-input"></td><td><span class="badge danger">Agotado</span></td></tr>
+        <tr><td><input type="checkbox" class="row"></td><td>978-84-376-0494-7</td><td>Cien años de soledad</td><td>Editorial Sudamericana</td><td class="num">3</td><td class="num">10</td><td class="num"><input type="number" value="30" min="1" class="qty-input"></td><td><span class="badge warning">Crítico</span></td></tr>
+        <tr><td><input type="checkbox" class="row"></td><td>978-84-339-7180-4</td><td>Los detectives salvajes</td><td>Editorial Anagrama</td><td class="num">2</td><td class="num">8</td><td class="num"><input type="number" value="25" min="1" class="qty-input"></td><td><span class="badge warning">Crítico</span></td></tr>
+        <tr><td><input type="checkbox" class="row"></td><td>978-84-204-0419-9</td><td>La ciudad y los perros</td><td>Editorial Alfaguara</td><td class="num">4</td><td class="num">10</td><td class="num"><input type="number" value="20" min="1" class="qty-input"></td><td><span class="badge warning">Bajo</span></td></tr>
+        <tr><td><input type="checkbox" class="row"></td><td>978-84-339-7239-9</td><td>Pedro Páramo</td><td>Editorial Anagrama</td><td class="num">6</td><td class="num">10</td><td class="num"><input type="number" value="15" min="1" class="qty-input"></td><td><span class="badge warning">Bajo</span></td></tr>
+        <tr><td><input type="checkbox" class="row"></td><td>978-84-9105-073-2</td><td>Patria</td><td>Editorial Tusquets</td><td class="num">5</td><td class="num">12</td><td class="num"><input type="number" value="20" min="1" class="qty-input"></td><td><span class="badge warning">Bajo</span></td></tr>
+        <tr><td><input type="checkbox" class="row"></td><td>978-607-31-1395-5</td><td>El laberinto de la soledad</td><td>FCE</td><td class="num">7</td><td class="num">10</td><td class="num"><input type="number" value="15" min="1" class="qty-input"></td><td><span class="badge warning">Bajo</span></td></tr>
+      </tbody>
+    </table>
+
+    <p class="muted small" style="margin-top:12px">
+      La cantidad sugerida se calcula con base en la rotación de los últimos 90 días y el punto de reorden configurado por producto.
+      Al generar, el sistema agrupará automáticamente los ítems seleccionados en una OC por proveedor (en estado <em>Borrador</em>).
+    </p>
+  </div>
+
+  <script src="../assets/shell.js"></script>
+  <script>
+    const selectAll = document.getElementById('selectAll');
+    const rows = document.querySelectorAll('.row');
+    const btn = document.getElementById('btnGenerar');
+    function refresh() {
+      const n = document.querySelectorAll('.row:checked').length;
+      btn.textContent = `Generar OC con seleccionados (${n})`;
+    }
+    selectAll.addEventListener('change', () => {
+      rows.forEach(r => { r.checked = selectAll.checked; });
+      refresh();
+    });
+    rows.forEach(r => r.addEventListener('change', refresh));
+  </script>
+</body>
+</html>
