@@ -1,118 +1,519 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ORIOLE — Prototipos</title>
-  <link rel="stylesheet" href="assets/styles.css">
-  <style>
-    .hero {
-      background: linear-gradient(135deg, #1F4E79 0%, #2E86AB 100%);
-      color: #fff; padding: 48px 32px; border-radius: 12px; margin-bottom: 32px;
-    }
-    .hero h1 { margin: 0 0 8px; font-size: 36px; letter-spacing: 2px; }
-    .hero p  { margin: 0; opacity: .9; max-width: 700px; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>edú — Propuesta de plataforma · Laravel · 10 fases</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css"/>
+<link rel="stylesheet" href="assets/edu.css"/>
+<style>
+/* ── NAV TOP ── */
+.nav { position: sticky; top: 0; z-index: 50; background: rgba(249,245,239,.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+.nav-inner { display:flex; align-items:center; justify-content:space-between; height: 64px; }
+.nav-links { display:flex; gap: 26px; align-items:center; }
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-mute); transition: color .15s; }
+.nav-links a:hover { color: var(--ink); }
+@media(max-width:760px){ .nav-links{display:none} }
 
-    .grid {
-      display: grid; gap: 16px;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    }
-    .tile {
-      background: #fff; border: 1px solid var(--color-border);
-      border-radius: 10px; padding: 18px; box-shadow: var(--shadow-sm);
-      display: flex; flex-direction: column; gap: 6px;
-      transition: transform .15s, box-shadow .15s;
-    }
-    .tile:hover { transform: translateY(-2px); box-shadow: var(--shadow); text-decoration: none; }
-    .tile h3 { margin: 0; color: var(--color-primary); font-size: 16px; }
-    .tile p  { margin: 0; color: var(--color-text-muted); font-size: 13px; }
-    .section-title {
-      font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
-      color: var(--color-text-muted); margin: 32px 0 12px;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 32px; }
-  </style>
+/* ── HERO ── */
+.hero { position: relative; overflow: hidden; padding: 72px 0 56px; }
+.hero::before{content:'';position:absolute;top:-120px;right:-80px;width:420px;height:420px;border-radius:50%;background:var(--coral);opacity:.10;filter:blur(20px)}
+.hero::after{content:'';position:absolute;bottom:-160px;left:-100px;width:360px;height:360px;border-radius:50%;background:var(--amber);opacity:.08;filter:blur(20px)}
+.hero h1 { font-size: 54px; font-weight: 800; max-width: 720px; }
+.hero p.lead { font-size: 18px; color: var(--ink-soft); max-width: 600px; margin-top: 18px; }
+@media(max-width:760px){ .hero h1{font-size:38px} }
+
+.kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:44px; }
+@media(max-width:760px){ .kpis{grid-template-columns:repeat(2,1fr)} }
+
+/* ── SECTION ── */
+.section { padding: 56px 0; }
+.section-head { max-width: 640px; margin-bottom: 36px; }
+.section-head h2 { font-size: 34px; font-weight: 800; }
+.section-head p { color: var(--ink-mute); margin-top: 12px; font-size: 15px; }
+
+/* ── MODULE CARD ── */
+.mod { padding: 20px; }
+.mod-ico { width: 44px; height: 44px; border-radius: var(--r-md); display:flex; align-items:center; justify-content:center; font-size: 22px; margin-bottom: 14px; }
+.mod h3 { font-size: 16px; font-weight: 700; }
+.mod p { font-size: 13px; color: var(--ink-mute); margin-top: 6px; }
+.mod ul { list-style: none; margin-top: 12px; display:flex; flex-direction:column; gap:6px; }
+.mod li { font-size: 12.5px; color: var(--ink-soft); display:flex; gap: 8px; align-items:flex-start; }
+.mod li i { color: var(--green); font-size: 14px; margin-top: 1px; flex-shrink:0; }
+
+/* ── PHASE ── */
+.phase { display: grid; grid-template-columns: 92px 1fr; gap: 22px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+.phase:last-child { border-bottom: none; }
+.phase-num { font-family:'Plus Jakarta Sans',sans-serif; font-size: 13px; font-weight: 700; color: var(--coral); }
+.phase-badge { width: 64px; height: 64px; border-radius: var(--r-lg); display:flex;align-items:center;justify-content:center; font-family:'Plus Jakarta Sans',sans-serif; font-size: 26px; font-weight:800; color:#fff; }
+.phase h3 { font-size: 19px; font-weight: 700; }
+.phase .goal { font-size: 13px; color: var(--ink-mute); margin: 6px 0 12px; }
+.phase-tags { display:flex; flex-wrap:wrap; gap: 6px; }
+.dur { font-size: 11px; font-weight:600; color: var(--ink-mute); background: var(--cream); border:1px solid var(--border); padding: 4px 10px; border-radius:99px; }
+
+/* ── TECH ── */
+.tech-grid { display:flex; flex-wrap:wrap; gap: 10px; }
+.tech-pill { display:flex; align-items:center; gap:8px; background:var(--white); border:1px solid var(--border); border-radius:99px; padding:8px 16px; font-size:13px; font-weight:600; box-shadow: var(--shadow-sm); }
+
+/* ── SCREEN LINKS ── */
+.screens { display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
+@media(max-width:760px){ .screens{grid-template-columns:1fr} }
+.screen-card { display:block; padding: 20px; }
+.screen-card .num { font-size:11px; font-weight:700; color: var(--coral); letter-spacing:.06em; }
+.screen-card h3 { font-size:16px; margin-top:6px; display:flex; align-items:center; justify-content:space-between; }
+.screen-card p { font-size:12.5px; color:var(--ink-mute); margin-top:6px; }
+
+footer { background: var(--ink); color: rgba(255,255,255,.7); padding: 44px 0; margin-top: 40px; }
+footer .logo { font-size: 28px; color:#fff; }
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="hero">
-      <h1>ORIOLE · Prototipos</h1>
-      <p>Prototipos navegables de todas las pantallas del sistema de inventario editorial,
-         basados en los lineamientos UX/UI del proyecto.</p>
-    </div>
 
-    <div class="section-title">Acceso</div>
-    <div class="grid">
-      <a class="tile" href="login.html"><h3>Login</h3><p>Pantalla de autenticación con recuperación de contraseña.</p></a>
-      <a class="tile" href="forgot-password.html"><h3>Recuperar contraseña</h3><p>Solicitud de envío por correo.</p></a>
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo" style="font-size:26px">ed<span class="logo-dot">ú</span></div>
+    <div class="nav-links">
+      <a href="#vision">Visión</a>
+      <a href="#modulos">Módulos</a>
+      <a href="#fases">Roadmap</a>
+      <a href="#stack">Stack</a>
+      <a href="#mockups">Mockups</a>
     </div>
-
-    <div class="section-title">Principal</div>
-    <div class="grid">
-      <a class="tile" href="dashboard.html"><h3>Dashboard gerencial</h3><p>KPIs, alertas de stock crítico, top productos y rotación.</p></a>
-      <a class="tile" href="dashboard-warehouse.html"><h3>Dashboard bodeguero</h3><p>Tareas pendientes, recepciones, stock crítico y conteos.</p></a>
-      <a class="tile" href="notifications/center.html"><h3>Notificaciones</h3><p>Centro de avisos: stock crítico, OC, ajustes.</p></a>
-      <a class="tile" href="notifications/preferences.html"><h3>Preferencias de notificación</h3><p>Matriz de eventos × canales (app/email/push).</p></a>
-    </div>
-
-    <div class="section-title">Catálogo</div>
-    <div class="grid">
-      <a class="tile" href="catalog/books.html"><h3>Libros</h3><p>Listado con búsqueda, filtros y paginación.</p></a>
-      <a class="tile" href="catalog/book-form.html"><h3>Libro · Nuevo / Editar</h3><p>Formulario completo con metadatos, autores y portada.</p></a>
-      <a class="tile" href="catalog/book-import.html"><h3>Importación masiva</h3><p>Carga desde Excel/CSV con reporte de errores.</p></a>
-      <a class="tile" href="catalog/authors.html"><h3>Autores</h3><p>Gestión de autores y co-autores.</p></a>
-      <a class="tile" href="catalog/publishers.html"><h3>Editoriales</h3><p>Catálogo de editoriales.</p></a>
-      <a class="tile" href="catalog/categories.html"><h3>Categorías</h3><p>Categorías jerárquicas.</p></a>
-      <a class="tile" href="catalog/barcodes.html"><h3>Etiquetas y códigos de barras</h3><p>Generación de etiquetas EAN-13 / Code 128 / QR.</p></a>
-    </div>
-
-    <div class="section-title">Compras</div>
-    <div class="grid">
-      <a class="tile" href="purchases/list.html"><h3>Órdenes de compra</h3><p>Listado, estados y seguimiento de OCs.</p></a>
-      <a class="tile" href="purchases/form.html"><h3>Nueva OC</h3><p>Formulario completo con ítems y resumen.</p></a>
-      <a class="tile" href="purchases/reception.html"><h3>Recepción de mercadería</h3><p>Recepción total o parcial con costo promedio.</p></a>
-      <a class="tile" href="purchases/detail.html"><h3>Detalle de OC</h3><p>Información, ítems, recepciones y avance.</p></a>
-      <a class="tile" href="purchases/suppliers.html"><h3>Proveedores</h3><p>Maestro con OCs activas y saldos.</p></a>
-    </div>
-
-    <div class="section-title">Inventario</div>
-    <div class="grid">
-      <a class="tile" href="inventory/stock.html"><h3>Stock por bodega</h3><p>Existencias consolidadas con alertas visuales.</p></a>
-      <a class="tile" href="inventory/movements.html"><h3>Movimientos</h3><p>Histórico transaccional filtrable.</p></a>
-      <a class="tile" href="inventory/movement-in.html"><h3>Entrada de stock</h3><p>Registro de ingreso de mercadería.</p></a>
-      <a class="tile" href="inventory/movement-out.html"><h3>Salida de stock</h3><p>Egreso operativo: consumo, donación, muestra.</p></a>
-      <a class="tile" href="inventory/movement-transfer.html"><h3>Traslado entre bodegas</h3><p>Egreso por traslado: salida en origen + entrada en destino.</p></a>
-      <a class="tile" href="inventory/movement-adjust.html"><h3>Ajuste de inventario</h3><p>Egreso por ajuste con motivo tipificado (merma, rotura, deterioro…).</p></a>
-      <a class="tile" href="inventory/warehouses.html"><h3>Bodegas</h3><p>Bodegas y ubicaciones internas.</p></a>
-      <a class="tile" href="inventory/kardex.html"><h3>Kardex</h3><p>Histórico cronológico por libro con saldos.</p></a>
-      <a class="tile" href="inventory/physical-count.html"><h3>Inventario físico</h3><p>Toma de inventario con captura y ajuste masivo.</p></a>
-      <a class="tile" href="inventory/replenishment.html"><h3>Reabastecimiento sugerido</h3><p>Productos bajo punto de reorden y generación automática de OC.</p></a>
-    </div>
-
-    <div class="section-title">Análisis</div>
-    <div class="grid">
-      <a class="tile" href="reports/index.html"><h3>Reportes</h3><p>Galería de reportes operativos y gerenciales.</p></a>
-      <a class="tile" href="reports/stock.html"><h3>Reporte de stock</h3><p>Stock actual y crítico.</p></a>
-      <a class="tile" href="audit.html"><h3>Auditoría</h3><p>Trazabilidad de operaciones críticas.</p></a>
-    </div>
-
-    <div class="section-title">Administración</div>
-    <div class="grid">
-      <a class="tile" href="users/list.html"><h3>Usuarios</h3><p>Gestión de usuarios.</p></a>
-      <a class="tile" href="users/user-form.html"><h3>Usuario · Nuevo / Editar</h3><p>Formulario con asignación de roles.</p></a>
-      <a class="tile" href="users/roles.html"><h3>Roles y permisos</h3><p>RBAC con matriz de permisos.</p></a>
-      <a class="tile" href="settings.html"><h3>Configuración</h3><p>Empresa, documentos, monedas, impuestos.</p></a>
-    </div>
-
-    <div class="section-title">App instalable</div>
-    <div class="grid">
-      <a class="tile" href="install.html"><h3>Instalación PWA</h3><p>Promo de instalación contextual.</p></a>
-    </div>
-
-    <hr>
-    <p class="text-muted" style="text-align:center;font-size:12px">
-      ORIOLE · Prototipos · Generados a partir de la documentación oficial.
-    </p>
+    <a href="#mockups" class="btn btn-coral btn-sm">Ver mockups <i class="ti ti-arrow-right"></i></a>
   </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow fade-up"><i class="ti ti-file-description"></i> Propuesta de desarrollo · 2026</div>
+    <h1 class="mt16 fade-up">La plataforma <span style="color:var(--coral)">edú</span>, construida como un producto profesional.</h1>
+    <p class="lead fade-up">Tomamos tu mockup y lo convertimos en un sistema completo, escalable y seguro sobre <strong>Laravel</strong>: marketplace educativo que conecta universitarios con academias y profes jóvenes, con seguimiento de notas, aulas virtuales, pagos y gamificación.</p>
+    <div class="row gap12 mt24 fade-up wrap-flex">
+      <a href="#fases" class="btn btn-coral btn-lg"><i class="ti ti-rocket"></i> Ver plan en 10 fases</a>
+      <a href="#mockups" class="btn btn-outline btn-lg"><i class="ti ti-device-desktop"></i> Explorar mockups</a>
+    </div>
+
+    <div class="kpis">
+      <div class="stat-tile"><div class="stat-v" style="color:var(--coral)">10</div><div class="stat-l">Fases de entrega</div></div>
+      <div class="stat-tile"><div class="stat-v" style="color:var(--green)">25+</div><div class="stat-l">Módulos funcionales</div></div>
+      <div class="stat-tile"><div class="stat-v" style="color:var(--blue)">4</div><div class="stat-l">Roles de usuario</div></div>
+      <div class="stat-tile"><div class="stat-v" style="color:var(--amber)">8</div><div class="stat-l">Pantallas mockup</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- VISIÓN -->
+<section class="section" id="vision">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sl"><i class="ti ti-bulb" style="color:var(--coral)"></i> El producto en una frase</div>
+      <h2>Un solo lugar donde el estudiante no reprueba solo.</h2>
+      <p>edú integra todo el ciclo del estudiante: encuentra la academia o el tutor ideal, sigue sus notas en tiempo real, recibe alertas de riesgo, accede a clases en vivo y material HD, y paga de forma segura — mientras academias y profes jóvenes monetizan su conocimiento.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="card mod card-hover">
+        <div class="mod-ico" style="background:var(--coral-lt);color:var(--coral)"><i class="ti ti-school"></i></div>
+        <h3>Alumno</h3>
+        <p>Compara academias, sigue su rendimiento y nunca llega tarde al examen.</p>
+      </div>
+      <div class="card mod card-hover">
+        <div class="mod-ico" style="background:var(--green-lt);color:var(--green)"><i class="ti ti-chalkboard"></i></div>
+        <h3>Profe joven</h3>
+        <p>Tutor universitario que genera ingresos con sesiones 1a1 y "Clase Flash".</p>
+      </div>
+      <div class="card mod card-hover">
+        <div class="mod-ico" style="background:var(--blue-lt);color:var(--blue)"><i class="ti ti-building"></i></div>
+        <h3>Academia</h3>
+        <p>Llega a miles sin límite de aforo; vende videos HD y asesorías en vivo.</p>
+      </div>
+      <div class="card mod card-hover">
+        <div class="mod-ico" style="background:var(--violet-lt);color:var(--violet)"><i class="ti ti-shield-check"></i></div>
+        <h3>Admin edú</h3>
+        <p>Modera, mide y opera la plataforma: comisiones, ranking y reportes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULOS -->
+<section class="section" id="modulos" style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sl"><i class="ti ti-stack-2" style="color:var(--coral)"></i> Detectado en el mockup</div>
+      <h2>Todo lo que se debe desarrollar</h2>
+      <p>Análisis funcional completo del mockup original. Cada bloque es un módulo del sistema en Laravel.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--ink);color:#fff"><i class="ti ti-key"></i></div>
+        <h3>Autenticación & Roles</h3>
+        <p>Registro multi-rol, verificación de correo universitario y permisos.</p>
+        <ul>
+          <li><i class="ti ti-check"></i> 4 roles: alumno, profe joven, academia, admin</li>
+          <li><i class="ti ti-check"></i> Verificación de dominio (@up.edu.pe, etc.)</li>
+          <li><i class="ti ti-check"></i> KYC académico (promedio ≥ 15 para tutores)</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--coral-lt);color:var(--coral)"><i class="ti ti-search"></i></div>
+        <h3>Buscador de academias</h3>
+        <p>Catálogo por universidad/carrera/curso con orden inteligente.</p>
+        <ul>
+          <li><i class="ti ti-check"></i> Universidades reales (UP, PUCP, U. Lima…)</li>
+          <li><i class="ti ti-check"></i> Orden: Puntaje edú, nota prom., precio, Flash</li>
+          <li><i class="ti ti-check"></i> Fichas con reseñas, ofertas y precios</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--violet-lt);color:var(--violet)"><i class="ti ti-brain"></i></div>
+        <h3>Matching con IA</h3>
+        <p>Test de estilo de aprendizaje que recomienda academia/profe ideal.</p>
+        <ul>
+          <li><i class="ti ti-check"></i> Cuestionario de 60 segundos</li>
+          <li><i class="ti ti-check"></i> Perfil de aprendizaje generado</li>
+          <li><i class="ti ti-check"></i> Recomendaciones personalizadas</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--blue-lt);color:var(--blue)"><i class="ti ti-layout-dashboard"></i></div>
+        <h3>Mis cursos + Horario</h3>
+        <p>Dashboard del alumno con horario semanal universidad + edú.</p>
+        <ul>
+          <li><i class="ti ti-check"></i> Tarjetas de curso con estado de riesgo</li>
+          <li><i class="ti ti-check"></i> Horario integrado con clases en vivo</li>
+          <li><i class="ti ti-check"></i> Alertas de "zona crítica"</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--green-lt);color:var(--green)"><i class="ti ti-calculator"></i></div>
+        <h3>Calculadora de notas</h3>
+        <p>Esquema de evaluación configurable por la academia.</p>
+        <ul>
+          <li><i class="ti ti-check"></i> Pesos por evaluación (PC1, PC2, final…)</li>
+          <li><i class="ti ti-check"></i> Cálculo "¿qué necesitas para aprobar?"</li>
+          <li><i class="ti ti-check"></i> Seguimiento y proyección automática</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--coral-lt);color:var(--coral)"><i class="ti ti-video"></i></div>
+        <h3>Aula virtual</h3>
+        <p>Clases en vivo, material por semanas y anuncios.</p>
+        <ul>
+          <li><i class="ti ti-check"></i> Links Meet/Zoom + calendario de clases</li>
+          <li><i class="ti ti-check"></i> Videos HD, PDF y prácticas resueltas</li>
+          <li><i class="ti ti-check"></i> Bloqueo por semana / progreso</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--blue-lt);color:var(--blue)"><i class="ti ti-message-circle"></i></div>
+        <h3>Chat en tiempo real</h3>
+        <p>Chat por curso con presencia "en línea" y notificaciones.</p>
+        <ul>
+          <li><i class="ti ti-check"></i> WebSockets (Laravel Reverb)</li>
+          <li><i class="ti ti-check"></i> Mensajes de academia + compañeros</li>
+          <li><i class="ti ti-check"></i> Notificaciones push y por correo</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--red-lt);color:var(--red)"><i class="ti ti-bolt"></i></div>
+        <h3>Profe joven & Clase Flash</h3>
+        <p>Marketplace de tutores con disponibilidad inmediata.</p>
+        <ul>
+          <li><i class="ti ti-check"></i> Toggle "Flash ahora" + agenda de citas</li>
+          <li><i class="ti ti-check"></i> Sesiones 1a1 y grupales</li>
+          <li><i class="ti ti-check"></i> Reseñas y récord académico verificado</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--green-lt);color:var(--green)"><i class="ti ti-credit-card"></i></div>
+        <h3>Pagos & comisiones</h3>
+        <p>Pasarela, wallet y split de comisiones (18% / 20%).</p>
+        <ul>
+          <li><i class="ti ti-check"></i> Suscripciones, videos y pago por hora</li>
+          <li><i class="ti ti-check"></i> Split y payouts a academias/profes</li>
+          <li><i class="ti ti-check"></i> Facturación e historial</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--amber-lt);color:var(--amber)"><i class="ti ti-clipboard-list"></i></div>
+        <h3>Banco de exámenes</h3>
+        <p>Repositorio de exámenes por universidad y curso.</p>
+        <ul>
+          <li><i class="ti ti-check"></i> 800+ exámenes categorizados</li>
+          <li><i class="ti ti-check"></i> Filtros por uni / carrera / ciclo</li>
+          <li><i class="ti ti-check"></i> Descargas y aportes de la comunidad</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--amber-lt);color:var(--amber)"><i class="ti ti-trophy"></i></div>
+        <h3>Gamificación</h3>
+        <p>Ranking, insignias y premios (pollo, eduFest, cupones).</p>
+        <ul>
+          <li><i class="ti ti-check"></i> Ranking y posición (#12 · Top 5%)</li>
+          <li><i class="ti ti-check"></i> Insignias y candidaturas a premios</li>
+          <li><i class="ti ti-check"></i> Eventos (eduFest) y cupones</li>
+        </ul>
+      </div>
+
+      <div class="card mod">
+        <div class="mod-ico" style="background:var(--violet-lt);color:var(--violet)"><i class="ti ti-settings"></i></div>
+        <h3>Backoffice academia/admin</h3>
+        <p>Configuración, contenidos, moderación y analítica.</p>
+        <ul>
+          <li><i class="ti ti-check"></i> Config. de calculadora y subida de videos</li>
+          <li><i class="ti ti-check"></i> CV de docentes y reseñas públicas</li>
+          <li><i class="ti ti-check"></i> Métricas, reportes y moderación</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FASES -->
+<section class="section" id="fases">
+  <div class="wrap-sm">
+    <div class="section-head">
+      <div class="sl"><i class="ti ti-route" style="color:var(--coral)"></i> Plan de ejecución</div>
+      <h2>El desarrollo en 10 fases</h2>
+      <p>Cada fase dura <strong>1 semana</strong> y entrega valor funcional e independiente — <strong>10 semanas</strong> en total. Construimos de los cimientos hacia la monetización y la operación.</p>
+    </div>
+
+    <!-- F1 -->
+    <div class="phase">
+      <div><div class="phase-badge" style="background:var(--ink)">01</div><div class="dur mt8">1 semana</div></div>
+      <div>
+        <span class="phase-num">FUNDACIÓN</span>
+        <h3>Arquitectura, base de datos y diseño base</h3>
+        <p class="goal">Cimientos técnicos del proyecto Laravel y el sistema de diseño reutilizable.</p>
+        <div class="phase-tags">
+          <span class="chip chip-sand">Laravel 11 + setup</span>
+          <span class="chip chip-sand">Modelo de datos</span>
+          <span class="chip chip-sand">Blade + Tailwind + Livewire</span>
+          <span class="chip chip-sand">CI/CD + entornos</span>
+          <span class="chip chip-sand">Seed universidades/carreras/cursos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F2 -->
+    <div class="phase">
+      <div><div class="phase-badge" style="background:var(--coral)">02</div><div class="dur mt8">1 semana</div></div>
+      <div>
+        <span class="phase-num">ACCESO</span>
+        <h3>Autenticación, roles y onboarding multi-rol</h3>
+        <p class="goal">"Únete a edú": registro diferenciado por rol con verificación académica.</p>
+        <div class="phase-tags">
+          <span class="chip chip-coral">Auth (Fortify)</span>
+          <span class="chip chip-coral">Roles & permisos</span>
+          <span class="chip chip-coral">Verificación correo universitario</span>
+          <span class="chip chip-coral">KYC profe (promedio ≥15)</span>
+          <span class="chip chip-coral">Aprobación de academias</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F3 -->
+    <div class="phase">
+      <div><div class="phase-badge" style="background:var(--green)">03</div><div class="dur mt8">1 semana</div></div>
+      <div>
+        <span class="phase-num">DESCUBRIMIENTO</span>
+        <h3>Catálogo y buscador de academias</h3>
+        <p class="goal">Encontrar academias por universidad, carrera y curso con orden inteligente.</p>
+        <div class="phase-tags">
+          <span class="chip chip-green">Universidades & cursos</span>
+          <span class="chip chip-green">Búsqueda + filtros</span>
+          <span class="chip chip-green">Orden por Puntaje edú</span>
+          <span class="chip chip-green">Fichas de academia</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F4 -->
+    <div class="phase">
+      <div><div class="phase-badge" style="background:var(--blue)">04</div><div class="dur mt8">1 semana</div></div>
+      <div>
+        <span class="phase-num">MIS CURSOS</span>
+        <h3>Inscripción, dashboard del alumno y horario</h3>
+        <p class="goal">El alumno contrata, ve sus cursos y su horario universidad + edú en un solo lugar.</p>
+        <div class="phase-tags">
+          <span class="chip chip-blue">Contratación de academia</span>
+          <span class="chip chip-blue">Dashboard de cursos</span>
+          <span class="chip chip-blue">Horario semanal integrado</span>
+          <span class="chip chip-blue">Estados de riesgo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F5 -->
+    <div class="phase">
+      <div><div class="phase-badge" style="background:var(--green)">05</div><div class="dur mt8">1 semana</div></div>
+      <div>
+        <span class="phase-num">SEGUIMIENTO</span>
+        <h3>Calculadora de notas y alertas de riesgo</h3>
+        <p class="goal">Esquemas de evaluación configurables y la pregunta clave: "¿qué necesito para aprobar?".</p>
+        <div class="phase-tags">
+          <span class="chip chip-green">Esquemas de evaluación</span>
+          <span class="chip chip-green">Cálculo de promedio</span>
+          <span class="chip chip-green">Proyección de aprobación</span>
+          <span class="chip chip-green">Alertas automáticas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F6 -->
+    <div class="phase">
+      <div><div class="phase-badge" style="background:var(--coral)">06</div><div class="dur mt8">1 semana</div></div>
+      <div>
+        <span class="phase-num">AULA VIRTUAL</span>
+        <h3>Clases en vivo, material y anuncios</h3>
+        <p class="goal">Entrega de contenido: links de clase, biblioteca por semanas y comunicados.</p>
+        <div class="phase-tags">
+          <span class="chip chip-coral">Links Meet/Zoom + agenda</span>
+          <span class="chip chip-coral">Videos HD & PDF (storage)</span>
+          <span class="chip chip-coral">Bloqueo/progreso por semana</span>
+          <span class="chip chip-coral">Anuncios</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F7 -->
+    <div class="phase">
+      <div><div class="phase-badge" style="background:var(--blue)">07</div><div class="dur mt8">1 semana</div></div>
+      <div>
+        <span class="phase-num">COMUNIDAD</span>
+        <h3>Chat en tiempo real y notificaciones</h3>
+        <p class="goal">Conversación por curso con presencia en vivo y avisos multicanal.</p>
+        <div class="phase-tags">
+          <span class="chip chip-blue">Laravel Reverb (WebSockets)</span>
+          <span class="chip chip-blue">Chat por curso</span>
+          <span class="chip chip-blue">Presencia "en línea"</span>
+          <span class="chip chip-blue">Notificaciones push/email</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F8 -->
+    <div class="phase">
+      <div><div class="phase-badge" style="background:var(--red)">08</div><div class="dur mt8">1 semana</div></div>
+      <div>
+        <span class="phase-num">TUTORES</span>
+        <h3>Profe joven, Clase Flash y reservas</h3>
+        <p class="goal">Marketplace de tutores con disponibilidad inmediata y agenda de sesiones.</p>
+        <div class="phase-tags">
+          <span class="chip chip-red">Perfiles de tutor</span>
+          <span class="chip chip-red">Toggle Clase Flash</span>
+          <span class="chip chip-red">Booking & calendario</span>
+          <span class="chip chip-red">Reseñas y calificaciones</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F9 -->
+    <div class="phase">
+      <div><div class="phase-badge" style="background:var(--amber)">09</div><div class="dur mt8">1 semana</div></div>
+      <div>
+        <span class="phase-num">MONETIZACIÓN</span>
+        <h3>Pagos, comisiones y payouts</h3>
+        <p class="goal">El corazón del negocio: cobros seguros y reparto de comisiones a academias y profes.</p>
+        <div class="phase-tags">
+          <span class="chip chip-amber">Pasarela (Culqi/Mercado Pago)</span>
+          <span class="chip chip-amber">Suscripciones & videos</span>
+          <span class="chip chip-amber">Split 18% / 20%</span>
+          <span class="chip chip-amber">Wallet, payouts y facturación</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F10 -->
+    <div class="phase">
+      <div><div class="phase-badge" style="background:var(--violet)">10</div><div class="dur mt8">1 semana</div></div>
+      <div>
+        <span class="phase-num">ESCALA & OPERACIÓN</span>
+        <h3>Banco de exámenes, gamificación y panel admin</h3>
+        <p class="goal">Retención y operación: comunidad, premios y control total de la plataforma.</p>
+        <div class="phase-tags">
+          <span class="chip chip-violet">Banco de exámenes</span>
+          <span class="chip chip-violet">Ranking, insignias, eduFest</span>
+          <span class="chip chip-violet">Panel admin & moderación</span>
+          <span class="chip chip-violet">Analítica & reportes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="section" id="stack" style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sl"><i class="ti ti-code" style="color:var(--coral)"></i> Tecnología</div>
+      <h2>Stack propuesto sobre Laravel</h2>
+      <p>Tecnologías maduras, seguras y de alto rendimiento para soportar miles de usuarios concurrentes.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-pill"><i class="ti ti-brand-laravel" style="color:#FF2D20"></i> Laravel 11</div>
+      <div class="tech-pill"><i class="ti ti-brand-php" style="color:var(--blue)"></i> PHP 8.3</div>
+      <div class="tech-pill"><i class="ti ti-database" style="color:var(--green)"></i> MySQL / PostgreSQL</div>
+      <div class="tech-pill"><i class="ti ti-bolt" style="color:var(--coral)"></i> Livewire + Alpine</div>
+      <div class="tech-pill"><i class="ti ti-brand-tailwind" style="color:#38BDF8"></i> Tailwind CSS</div>
+      <div class="tech-pill"><i class="ti ti-broadcast" style="color:var(--red)"></i> Laravel Reverb (WebSockets)</div>
+      <div class="tech-pill"><i class="ti ti-layout-grid" style="color:var(--violet)"></i> Filament (Admin)</div>
+      <div class="tech-pill"><i class="ti ti-shield-lock" style="color:var(--ink)"></i> Fortify + Spatie Permissions</div>
+      <div class="tech-pill"><i class="ti ti-credit-card" style="color:var(--green)"></i> Culqi / Mercado Pago</div>
+      <div class="tech-pill"><i class="ti ti-cloud" style="color:var(--blue)"></i> S3 (storage de videos)</div>
+      <div class="tech-pill"><i class="ti ti-stack-2" style="color:var(--amber)"></i> Redis + Queues / Horizon</div>
+      <div class="tech-pill"><i class="ti ti-brand-docker" style="color:#2496ED"></i> Docker / CI-CD</div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUPS -->
+<section class="section" id="mockups">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sl"><i class="ti ti-device-desktop" style="color:var(--coral)"></i> Prototipos navegables</div>
+      <h2>Mockups profesionales del sistema</h2>
+      <p>Versión profesional de cada pantalla clave, lista para validar con el cliente antes de programar.</p>
+    </div>
+    <div class="screens">
+      <a href="login.html" class="card screen-card card-hover"><div class="num">ACCESO</div><h3>Login & Onboarding <i class="ti ti-arrow-up-right"></i></h3><p>Registro multi-rol: alumno, profe joven y academia.</p></a>
+      <a href="dashboard-alumno.html" class="card screen-card card-hover"><div class="num">ALUMNO</div><h3>Mis cursos <i class="ti ti-arrow-up-right"></i></h3><p>Dashboard, horario, calculadora de notas y aula.</p></a>
+      <a href="buscar-academia.html" class="card screen-card card-hover"><div class="num">DESCUBRIR</div><h3>Buscar academia <i class="ti ti-arrow-up-right"></i></h3><p>Catálogo, filtros y matching con IA.</p></a>
+      <a href="profe-joven.html" class="card screen-card card-hover"><div class="num">TUTORES</div><h3>Profe joven <i class="ti ti-arrow-up-right"></i></h3><p>Marketplace de tutores y Clase Flash.</p></a>
+      <a href="banco-examenes.html" class="card screen-card card-hover"><div class="num">RECURSOS</div><h3>Banco de exámenes <i class="ti ti-arrow-up-right"></i></h3><p>Repositorio filtrable por universidad y curso.</p></a>
+      <a href="panel-academia.html" class="card screen-card card-hover"><div class="num">BACKOFFICE</div><h3>Panel academia <i class="ti ti-arrow-up-right"></i></h3><p>Calculadora, videos, links, docentes e ingresos.</p></a>
+      <a href="panel-admin.html" class="card screen-card card-hover"><div class="num">OPERACIÓN</div><h3>Panel admin edú <i class="ti ti-arrow-up-right"></i></h3><p>Métricas, comisiones, moderación y reportes.</p></a>
+      <a href="../cliente/edu-dashboard.html" class="card screen-card card-hover"><div class="num">REFERENCIA</div><h3>Mockup original <i class="ti ti-arrow-up-right"></i></h3><p>El mockup del cliente que originó esta propuesta.</p></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap between wrap-flex gap24">
+    <div>
+      <div class="logo">ed<span class="logo-dot">ú</span></div>
+      <p style="font-size:13px;margin-top:8px;max-width:380px">Propuesta profesional de plataforma educativa construida en Laravel — tu ciclo, tu ritmo.</p>
+    </div>
+    <div style="font-size:12px;text-align:right">
+      <div>Documento de propuesta · 2026</div>
+      <div class="mt4" style="opacity:.6">10 fases · 25+ módulos · 4 roles</div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>

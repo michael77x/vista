@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>edú — Panel Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css"/>
+<link rel="stylesheet" href="assets/edu.css"/>
+<style>
+.bar { display:flex;align-items:flex-end;gap:8px;height:120px;padding-top:10px; }
+.bar-col { flex:1;background:var(--coral-lt);border-radius:6px 6px 0 0;position:relative; }
+.bar-col span { position:absolute;bottom:-18px;left:0;right:0;text-align:center;font-size:9px;color:var(--ink-mute); }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="logo" style="font-size:28px;color:#fff;margin-bottom:14px">ed<span class="logo-dot">ú</span></div>
+      <div class="user-card"><div class="avatar" style="background:var(--violet)"><i class="ti ti-shield-check"></i></div><div><div style="font-size:12px;font-weight:600">Admin edú</div><div style="font-size:10px;color:rgba(255,255,255,.5)">Operaciones</div></div></div>
+    </div>
+    <nav class="sb-nav">
+      <div class="nav-item on"><i class="ti ti-chart-pie"></i> Dashboard</div>
+      <div class="nav-item"><i class="ti ti-building"></i> Academias <span class="nav-badge" style="background:var(--amber)">3</span></div>
+      <div class="nav-item"><i class="ti ti-chalkboard"></i> Profes jóvenes</div>
+      <div class="nav-item"><i class="ti ti-users"></i> Alumnos</div>
+      <div class="nav-item"><i class="ti ti-cash"></i> Comisiones & payouts</div>
+      <div class="nav-item"><i class="ti ti-flag"></i> Moderación <span class="nav-badge">5</span></div>
+      <div class="nav-item"><i class="ti ti-trophy"></i> Gamificación & eduFest</div>
+      <div class="nav-item"><i class="ti ti-report"></i> Reportes</div>
+    </nav>
+    <div class="sb-foot"><a href="index.html" class="nav-item" style="font-size:12px"><i class="ti ti-arrow-left"></i> Volver a la propuesta</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><div class="tb-title">Dashboard de operación</div><div class="tb-sub">Visión global de la plataforma · Ciclo 2025-2</div></div>
+      <div class="row gap8"><span class="chip chip-amber"><i class="ti ti-clock"></i> 3 academias por aprobar</span><span class="chip chip-red"><i class="ti ti-flag"></i> 5 reportes</span></div>
+    </header>
+    <div class="content">
+      <div class="grid grid-4 mb24">
+        <div class="stat-tile"><div class="stat-l">GMV del mes</div><div class="stat-v" style="color:var(--green)">S/. 412k</div><div style="font-size:11px;color:var(--green)">↑ 23% MoM</div></div>
+        <div class="stat-tile"><div class="stat-l">Comisión edú</div><div class="stat-v" style="color:var(--coral)">S/. 76k</div><div style="font-size:11px;color:var(--ink-mute)">18% / 20%</div></div>
+        <div class="stat-tile"><div class="stat-l">Usuarios activos</div><div class="stat-v" style="color:var(--blue)">18.2k</div><div style="font-size:11px;color:var(--ink-mute)">alumnos + profes</div></div>
+        <div class="stat-tile"><div class="stat-l">Academias / Profes</div><div class="stat-v" style="color:var(--violet)">42 / 318</div><div style="font-size:11px;color:var(--ink-mute)">activos</div></div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1.5fr 1fr">
+        <!-- INGRESOS -->
+        <div class="card card-pad">
+          <div class="sl"><i class="ti ti-chart-bar" style="color:var(--coral)"></i> Ingresos por semana (S/. miles)</div>
+          <div class="bar">
+            <div class="bar-col" style="height:55%;background:var(--coral-lt)"><span>S1</span></div>
+            <div class="bar-col" style="height:68%;background:var(--coral-lt)"><span>S2</span></div>
+            <div class="bar-col" style="height:60%;background:var(--coral-lt)"><span>S3</span></div>
+            <div class="bar-col" style="height:82%;background:var(--coral)"><span>S4</span></div>
+            <div class="bar-col" style="height:74%;background:var(--coral-lt)"><span>S5</span></div>
+            <div class="bar-col" style="height:95%;background:var(--coral)"><span>S6</span></div>
+            <div class="bar-col" style="height:88%;background:var(--coral-lt)"><span>S7</span></div>
+          </div>
+        </div>
+        <!-- APROBACIONES -->
+        <div class="card card-pad">
+          <div class="sl"><i class="ti ti-clipboard-check" style="color:var(--coral)"></i> Por aprobar</div>
+          <div class="col gap10">
+            <div class="row gap10"><div class="avatar" style="background:var(--blue);border-radius:10px">AD</div><div class="grow"><div style="font-size:13px;font-weight:600">Academia Aduni</div><div style="font-size:11px;color:var(--ink-mute)">UP, PUCP · 9 docentes</div></div><button class="btn btn-green btn-sm">Aprobar</button></div>
+            <div class="divider"></div>
+            <div class="row gap10"><div class="avatar" style="background:var(--green);border-radius:10px">CM</div><div class="grow"><div style="font-size:13px;font-weight:600">Carlos Medina · Profe</div><div style="font-size:11px;color:var(--ink-mute)">Cálculo I · 18.5/20 verificado</div></div><button class="btn btn-green btn-sm">Aprobar</button></div>
+            <div class="divider"></div>
+            <div class="row gap10"><div class="avatar" style="background:var(--amber);border-radius:10px">SA</div><div class="grow"><div style="font-size:13px;font-weight:600">Academia Saco Oliveros</div><div style="font-size:11px;color:var(--ink-mute)">Falta CV de 2 docentes</div></div><button class="btn btn-outline btn-sm">Revisar</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODERACIÓN -->
+      <div class="card mt24">
+        <div class="card-pad between"><div class="sl" style="margin:0"><i class="ti ti-flag" style="color:var(--red)"></i> Cola de moderación</div><span class="chip chip-red">5 pendientes</span></div>
+        <table class="tbl">
+          <thead><tr><th>Tipo</th><th>Reportado</th><th>Motivo</th><th>Reportes</th><th>Acción</th></tr></thead>
+          <tbody>
+            <tr><td><span class="chip chip-blue">Reseña</span></td><td>Reseña a "Academia X"</td><td>Lenguaje ofensivo</td><td>3</td><td><div class="row gap6"><button class="btn btn-outline btn-sm">Ver</button><button class="btn btn-red btn-sm">Ocultar</button></div></td></tr>
+            <tr><td><span class="chip chip-amber">Profe</span></td><td>Tutor "J. Pérez"</td><td>No se presentó a sesión</td><td>2</td><td><div class="row gap6"><button class="btn btn-outline btn-sm">Ver</button><button class="btn btn-red btn-sm">Suspender</button></div></td></tr>
+            <tr><td><span class="chip chip-violet">Material</span></td><td>Examen subido</td><td>Posible derecho de autor</td><td>1</td><td><div class="row gap6"><button class="btn btn-outline btn-sm">Ver</button><button class="btn btn-red btn-sm">Retirar</button></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

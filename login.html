@@ -1,46 +1,146 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ORIOLE — Iniciar sesión</title>
-  <link rel="stylesheet" href="assets/styles.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>edú — Acceso & Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css"/>
+<link rel="stylesheet" href="assets/edu.css"/>
+<style>
+.auth { display:grid; grid-template-columns: 1fr 1fr; min-height:100vh; }
+@media(max-width:900px){ .auth{grid-template-columns:1fr} .auth-aside{display:none} }
+.auth-aside { background: var(--ink); color:#fff; padding: 48px; position:relative; overflow:hidden; display:flex; flex-direction:column; }
+.auth-aside::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:var(--coral);opacity:.16}
+.auth-aside::after{content:'';position:absolute;bottom:-100px;left:-60px;width:240px;height:240px;border-radius:50%;background:var(--amber);opacity:.1}
+.aside-z { position:relative; z-index:1; }
+.aside-feat { display:flex; gap:12px; align-items:flex-start; margin-top:18px; }
+.aside-feat .fi { width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0 }
+.auth-main { display:flex; align-items:center; justify-content:center; padding: 40px 24px; }
+.auth-box { width:100%; max-width: 460px; }
+.role-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.rc { border:1.5px solid var(--border-md); border-radius: var(--r-md); padding:14px 10px; text-align:center; cursor:pointer; transition:all .16s; background:var(--white); }
+.rc:hover { border-color:var(--coral); }
+.rc.sel { border-color:var(--coral); background:var(--coral-lt); }
+.rc i { font-size:24px; }
+.rc-name { font-size:12px; font-weight:700; margin-top:6px; }
+.rc-sub { font-size:10px; color:var(--ink-mute); margin-top:3px; line-height:1.3; }
+.steps { display:flex; gap:8px; margin: 20px 0 18px; }
+.step { flex:1; font-size:11px; font-weight:600; text-align:center; padding:8px; border-radius:99px; background:var(--cream); color:var(--ink-mute); border:1px solid var(--border); }
+.step.cur { background:var(--ink); color:#fff; }
+.step.done { background:var(--green-lt); color:var(--green-dk); }
+.form-pane { display:none; }
+.form-pane.on { display:block; animation: fadeUp .35s ease both; }
+.info-pill { display:flex; gap:9px; font-size:12px; padding:11px 13px; border-radius:var(--r-md); margin-bottom:14px; line-height:1.4; }
+.row2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.req { background:var(--cream); border:1px solid var(--border); border-radius:var(--r-md); padding:14px; margin:12px 0; }
+.req-item { display:flex; gap:9px; font-size:12px; align-items:flex-start; margin-top:8px; }
+.req-item i { color:var(--coral); font-size:15px; margin-top:1px; flex-shrink:0; }
+</style>
 </head>
 <body>
-  <div class="mock-banner">Mockup estático — pulse cualquier botón para navegar al dashboard.</div>
-  <div class="center-screen">
-    <div class="auth-card">
-      <h1>ORIOLE</h1>
-      <p class="subtitle">Sistema multiempresa de inventario editorial</p>
+<div class="auth">
+  <!-- ASIDE -->
+  <aside class="auth-aside">
+    <div class="aside-z grow">
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.6);margin-bottom:40px"><i class="ti ti-arrow-left"></i> Volver a la propuesta</a>
+      <div class="logo" style="font-size:40px;color:#fff">ed<span class="logo-dot">ú</span></div>
+      <h1 style="font-size:32px;color:#fff;margin-top:24px;max-width:360px">Tu ciclo, tu ritmo.</h1>
+      <p style="color:rgba(255,255,255,.65);margin-top:12px;font-size:14px;max-width:360px">Únete a la comunidad universitaria que no reprueba sola.</p>
 
-      <form onsubmit="event.preventDefault(); location.href='dashboard.html'">
-        <div class="field">
-          <label for="user">Usuario</label>
-          <input id="user" type="text" value="admin" autocomplete="username">
-        </div>
-        <div class="field" style="margin-top:12px">
-          <label for="pwd">Contraseña</label>
-          <input id="pwd" type="password" value="••••••••" autocomplete="current-password">
-        </div>
-
-        <div style="display:flex;justify-content:space-between;align-items:center;margin:16px 0">
-          <label style="font-size:13px"><input type="checkbox"> Recordarme</label>
-          <a href="forgot-password.html" style="font-size:13px">¿Olvidaste tu contraseña?</a>
-        </div>
-
-        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:10px">
-          Iniciar sesión
-        </button>
-      </form>
-
-      <p class="text-muted" style="font-size:12px;margin-top:16px;text-align:center">
-        Al ingresar se cargará la empresa predeterminada; los usuarios con varias empresas podrán cambiarla desde la barra superior.
-      </p>
-
-      <p class="text-muted" style="text-align:center;font-size:12px;margin-top:24px">
-        v1.0.0 · <a href="index.html">Volver a mockups</a>
-      </p>
+      <div class="aside-feat"><div class="fi"><i class="ti ti-calculator"></i></div><div><div style="font-weight:600;font-size:14px">Sigue tus notas</div><div style="font-size:12px;color:rgba(255,255,255,.55)">Calculadora oficial por academia</div></div></div>
+      <div class="aside-feat"><div class="fi"><i class="ti ti-bolt"></i></div><div><div style="font-weight:600;font-size:14px">Clase Flash</div><div style="font-size:12px;color:rgba(255,255,255,.55)">Profe joven disponible ahora mismo</div></div></div>
+      <div class="aside-feat"><div class="fi"><i class="ti ti-trophy"></i></div><div><div style="font-weight:600;font-size:14px">Premios edú</div><div style="font-size:12px;color:rgba(255,255,255,.55)">Ranking, insignias y eduFest</div></div></div>
     </div>
-  </div>
+    <div class="aside-z" style="font-size:12px;color:rgba(255,255,255,.4)">Alumno gratis · Academias y profes monetizan</div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="auth-main">
+    <div class="auth-box">
+      <div class="row between mb16">
+        <h2 style="font-size:24px">Crea tu cuenta</h2>
+        <div style="font-size:12px" class="muted">¿Ya tienes? <a href="#" style="color:var(--coral);font-weight:600">Inicia sesión</a></div>
+      </div>
+
+      <div class="sl"><i class="ti ti-user-plus" style="color:var(--coral)"></i> ¿Cómo quieres ser parte de edú?</div>
+      <div class="role-grid">
+        <div class="rc sel" onclick="selRole('alumno',this)"><i class="ti ti-school" style="color:var(--coral)"></i><div class="rc-name">Soy alumno</div><div class="rc-sub">Asesorías y comparar academias</div></div>
+        <div class="rc" onclick="selRole('profe',this)"><i class="ti ti-chalkboard" style="color:var(--green)"></i><div class="rc-name">Profe joven</div><div class="rc-sub">Enseño desde S/. 30/hr</div></div>
+        <div class="rc" onclick="selRole('academia',this)"><i class="ti ti-building" style="color:var(--blue)"></i><div class="rc-name">Academia</div><div class="rc-sub">Llego a miles sin aforo</div></div>
+      </div>
+
+      <div class="steps">
+        <div class="step done">✓ Rol</div>
+        <div class="step cur">2 · Datos</div>
+        <div class="step">3 · Verificación</div>
+      </div>
+
+      <!-- ALUMNO -->
+      <div class="form-pane on" id="f-alumno">
+        <div class="info-pill" style="background:var(--coral-lt);color:var(--coral-dk)"><i class="ti ti-gift"></i><span><strong>Alumno edú — siempre gratis.</strong> Solo pagas cuando contratas una academia, video o profe joven.</span></div>
+        <label class="field-l">Nombre completo</label>
+        <input class="field" placeholder="Ej. Andrea Vargas Ramos">
+        <div class="row2">
+          <div><label class="field-l">Universidad</label><select class="field"><option>U. del Pacífico</option><option>U. de Lima</option><option>PUCP</option><option>UTEC</option></select></div>
+          <div><label class="field-l">Carrera</label><select class="field"><option>Administración</option><option>Economía</option><option>Derecho</option><option>Ingeniería</option></select></div>
+        </div>
+        <label class="field-l">Correo universitario</label>
+        <input class="field" type="email" placeholder="usuario@up.edu.pe">
+        <button class="btn btn-coral btn-lg mt16" style="width:100%;justify-content:center">Crear mi cuenta — es gratis</button>
+      </div>
+
+      <!-- PROFE -->
+      <div class="form-pane" id="f-profe">
+        <div class="info-pill" style="background:var(--green-lt);color:var(--green-dk)"><i class="ti ti-cash"></i><span><strong>Profe joven — genera S/. 30–50/hr.</strong> Necesitas promedio ≥ 15 en el curso. edú verifica tu récord académico.</span></div>
+        <label class="field-l">Nombre completo</label>
+        <input class="field" placeholder="Ej. Carlos Medina Torres">
+        <div class="row2">
+          <div><label class="field-l">Universidad</label><select class="field"><option>UTEC</option><option>PUCP</option><option>U. del Pacífico</option><option>U. de Lima</option></select></div>
+          <div><label class="field-l">Ciclo actual</label><select class="field"><option>4to</option><option>5to</option><option>6to</option><option>7mo+</option></select></div>
+        </div>
+        <label class="field-l">Cursos que puedes enseñar</label>
+        <input class="field" placeholder="Cálculo I, Estadística, Microeconomía…">
+        <div class="row2">
+          <div><label class="field-l">Precio/hora (S/.)</label><input class="field" type="number" placeholder="35"></div>
+          <div><label class="field-l">Modalidad</label><select class="field"><option>Solo privada 1a1</option><option>Solo grupal</option><option>Ambas</option></select></div>
+        </div>
+        <div class="info-pill mt12" style="background:var(--red-lt);color:var(--red)"><i class="ti ti-bolt"></i><span><strong>Clase Flash (opcional)</strong> — actívalo cuando estés disponible ahora y aparecerás primero en las búsquedas.</span></div>
+        <button class="btn btn-green btn-lg" style="width:100%;justify-content:center">Crear mi perfil de profe joven</button>
+      </div>
+
+      <!-- ACADEMIA -->
+      <div class="form-pane" id="f-academia">
+        <div class="info-pill" style="background:var(--blue-lt);color:var(--blue-dk)"><i class="ti ti-broadcast"></i><span><strong>Academia edú — sin límite de aforo virtual.</strong> edú cobra 18% por transacción — recibes el 82% limpio.</span></div>
+        <div class="req">
+          <div style="font-size:12px;font-weight:700;display:flex;gap:6px;align-items:center"><i class="ti ti-circle-check" style="color:var(--coral)"></i> Requisitos para registrar tu academia</div>
+          <div class="req-item"><i class="ti ti-calculator"></i><span><strong>Configurar la calculadora de notas</strong> por curso con los pesos exactos (PC1, PC2, examen final…).</span></div>
+          <div class="req-item"><i class="ti ti-video"></i><span>Subir al menos 5 videos HD por curso en el primer mes.</span></div>
+          <div class="req-item"><i class="ti ti-link"></i><span>Compartir el link de cada clase (Meet/Zoom) en el chat del curso.</span></div>
+          <div class="req-item"><i class="ti ti-id-badge"></i><span>Subir el CV de cada docente con su especialidad.</span></div>
+          <div class="req-item"><i class="ti ti-star"></i><span>Aceptar el sistema de reseñas públicas — el ranking es transparente.</span></div>
+        </div>
+        <label class="field-l">Nombre de la academia</label>
+        <input class="field" placeholder="Ej. Academia Trilce">
+        <div class="row2">
+          <div><label class="field-l">Universidades que cubren</label><select class="field"><option>UP, PUCP, U. Lima</option><option>Solo UP</option><option>Todas</option></select></div>
+          <div><label class="field-l">N° de docentes</label><input class="field" type="number" placeholder="12"></div>
+        </div>
+        <label class="field-l">Director académico + correo</label>
+        <input class="field" type="email" placeholder="director@academia.pe">
+        <button class="btn btn-ink btn-lg mt16" style="width:100%;justify-content:center">Solicitar demo gratuita con el equipo edú</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+function selRole(role, el){
+  document.querySelectorAll('.rc').forEach(r=>r.classList.remove('sel'));
+  el.classList.add('sel');
+  document.querySelectorAll('.form-pane').forEach(f=>f.classList.remove('on'));
+  document.getElementById('f-'+role).classList.add('on');
+}
+</script>
 </body>
 </html>

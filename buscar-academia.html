@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>edú — Buscar academia</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css"/>
+<link rel="stylesheet" href="assets/edu.css"/>
+<style>
+.uni-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }
+@media(max-width:660px){ .uni-grid{grid-template-columns:1fr} }
+.uc { border:1.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden;cursor:pointer;transition:all .16s;background:var(--white); }
+.uc:hover { box-shadow:var(--shadow-md); }
+.uc.sel { border-color:var(--coral); }
+.uc-top { padding:16px;text-align:center; }
+.uc-name { font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px;margin-top:6px; }
+.uc-stat { font-size:11px;color:var(--ink-mute);margin-top:4px;line-height:1.4; }
+.uc-btn { width:100%;border:none;padding:11px;font-size:12.5px;font-weight:600;color:#fff;cursor:pointer; }
+.search-wrap { display:flex;gap:10px;margin:16px 0;align-items:center;background:var(--white);border:1px solid var(--border-md);border-radius:var(--r-lg);padding:6px 6px 6px 16px; }
+.search-wrap input { flex:1;border:none;outline:none;font-size:14px;font-family:'Inter'; }
+.match { background:var(--ink);color:#fff;border-radius:var(--r-lg);overflow:hidden;margin-bottom:16px; }
+.match-h { display:flex;align-items:center;gap:12px;padding:16px;cursor:pointer; }
+.match-ico { width:44px;height:44px;border-radius:12px;background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0; }
+.match-b { display:none;padding:0 16px 16px; }
+.match-b.on { display:block; }
+.q-opts { display:flex;flex-wrap:wrap;gap:6px;margin-top:8px; }
+.q-opt { font-size:11px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.08);cursor:pointer;border:1px solid rgba(255,255,255,.12); }
+.q-opt.sel { background:var(--coral);border-color:var(--coral); }
+.sort-row { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px; }
+.sort-chip { font-size:12px;font-weight:600;padding:7px 14px;border-radius:99px;background:var(--white);border:1px solid var(--border);cursor:pointer; }
+.sort-chip.on { background:var(--ink);color:#fff;border-color:var(--ink); }
+.sort-chip.flash { background:var(--red-lt);color:var(--red);border-color:var(--red); }
+.res { padding:18px;margin-bottom:14px; }
+.res.top { border:2px solid var(--coral); }
+.rc-logo { width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:15px;flex-shrink:0; }
+.sc-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0; }
+.sc2 { text-align:center;background:var(--cream);border-radius:var(--r-md);padding:10px 4px; }
+.sc2-v { font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:800; }
+.sc2-l { font-size:10px;color:var(--ink-mute);margin-top:2px; }
+.ot { font-size:11px;padding:5px 10px;border-radius:99px;border:1px solid;display:inline-flex;gap:4px;align-items:center; }
+.ot-y { background:var(--green-lt);color:var(--green-dk);border-color:transparent; }
+.ot-v { background:var(--violet-lt);color:var(--violet);border-color:transparent; }
+.ot-n { background:var(--cream);color:var(--ink-mute);border-color:var(--border);text-decoration:line-through; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="logo" style="font-size:28px;color:#fff;margin-bottom:14px">ed<span class="logo-dot">ú</span></div>
+      <div class="user-card"><div class="avatar">AV</div><div><div style="font-size:12px;font-weight:600">Andrea Vargas</div><div style="font-size:10px;color:rgba(255,255,255,.5)">Administración · UP</div></div></div>
+    </div>
+    <nav class="sb-nav">
+      <div class="nav-item on"><i class="ti ti-search"></i> Buscar academia</div>
+      <a href="dashboard-alumno.html" class="nav-item"><i class="ti ti-layout-dashboard"></i> Mis cursos <span class="nav-badge">2</span></a>
+      <a href="banco-examenes.html" class="nav-item"><i class="ti ti-clipboard-list"></i> Banco de exámenes</a>
+      <a href="profe-joven.html" class="nav-item"><i class="ti ti-bolt"></i> Profe joven <span class="nav-badge">6</span></a>
+      <a href="login.html" class="nav-item"><i class="ti ti-user-plus"></i> Únete a edú</a>
+    </nav>
+    <div class="sb-foot"><a href="index.html" class="nav-item" style="font-size:12px"><i class="ti ti-arrow-left"></i> Volver a la propuesta</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><div class="tb-title">Buscar academia</div><div class="tb-sub">UP · PUCP · U. de Lima — Compara con datos reales</div></div>
+    </header>
+    <div class="content">
+      <div class="sl"><i class="ti ti-building" style="color:var(--coral)"></i> Elige tu universidad</div>
+      <div class="uni-grid mb16">
+        <div class="uc sel" onclick="selUni(this)"><div class="uc-top" style="background:var(--coral-lt)"><div style="font-family:'Syne';font-size:22px;font-weight:800;color:var(--coral-dk)">UP</div><div class="uc-name">U. del Pacífico</div><div class="uc-stat">12 carreras · Jesús María</div></div><button class="uc-btn" style="background:var(--coral)">Buscar en UP</button></div>
+        <div class="uc" onclick="selUni(this)"><div class="uc-top" style="background:var(--green-lt)"><div style="font-family:'Syne';font-size:22px;font-weight:800;color:var(--green-dk)">UL</div><div class="uc-name">U. de Lima</div><div class="uc-stat">14 carreras · Monterrico</div></div><button class="uc-btn" style="background:var(--green)">Buscar en U. Lima</button></div>
+        <div class="uc" onclick="selUni(this)"><div class="uc-top" style="background:var(--blue-lt)"><div style="font-family:'Syne';font-size:20px;font-weight:800;color:var(--blue-dk)">PUCP</div><div class="uc-name">PUCP</div><div class="uc-stat">52 carreras · 13 facultades</div></div><button class="uc-btn" style="background:var(--blue)">Buscar en PUCP</button></div>
+      </div>
+
+      <div class="search-wrap">
+        <i class="ti ti-search" style="color:var(--ink-mute);font-size:18px"></i>
+        <input value="Estadística para Negocios" placeholder="Busca tu curso…">
+        <button class="btn btn-coral">Buscar</button>
+      </div>
+
+      <!-- MATCH IA -->
+      <div class="match">
+        <div class="match-h" onclick="document.getElementById('mb').classList.toggle('on')">
+          <div class="match-ico"><i class="ti ti-brain"></i></div>
+          <div class="grow"><div style="font-weight:700;font-size:14px">¿Cómo aprendes mejor? — 60 segundos</div><div style="font-size:12px;color:rgba(255,255,255,.55)">Opcional · Te encontramos la academia o profe ideal para tu forma de aprender</div></div>
+          <i class="ti ti-chevron-down" style="color:rgba(255,255,255,.5)"></i>
+        </div>
+        <div class="match-b" id="mb">
+          <div style="font-size:13px;font-weight:600;margin-top:6px">¿Cuándo sueles ponerte a estudiar cuando el curso se pone difícil?</div>
+          <div class="q-opts"><span class="q-opt" onclick="selQ(this)">Desde el inicio</span><span class="q-opt" onclick="selQ(this)">A mitad del ciclo</span><span class="q-opt sel" onclick="selQ(this)">Una semana antes</span><span class="q-opt" onclick="selQ(this)">El día anterior</span></div>
+          <div style="font-size:13px;font-weight:600;margin-top:14px">¿Con qué te cuesta más?</div>
+          <div class="q-opts"><span class="q-opt" onclick="selQ(this)">Memorizar conceptos</span><span class="q-opt sel" onclick="selQ(this)">Los ejercicios se olvidan</span><span class="q-opt" onclick="selQ(this)">Leer teoría</span><span class="q-opt" onclick="selQ(this)">Presión en examen</span></div>
+          <button class="btn btn-coral mt16" style="width:100%;justify-content:center" onclick="document.getElementById('mr').style.display='block'"><i class="ti ti-sparkles"></i> Analizar con IA y ver mi match</button>
+          <div id="mr" style="display:none;background:rgba(255,255,255,.07);border-radius:var(--r-md);padding:14px;margin-top:12px">
+            <div style="font-weight:700;color:var(--coral)">Perfil: aprendiz visual bajo presión</div>
+            <div style="font-size:12.5px;color:rgba(255,255,255,.7);margin-top:4px">Estudias en el último momento y los ejercicios se olvidan bajo presión. Necesitas videos HD + sesión flash antes del examen.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sort-row">
+        <div class="sort-chip on">Puntaje edú</div><div class="sort-chip">Nota prom.</div><div class="sort-chip">Precio</div>
+        <div class="sort-chip flash"><i class="ti ti-bolt"></i> Flash</div><div class="sort-chip"><i class="ti ti-video"></i> Solo videos</div>
+      </div>
+
+      <!-- RESULTADO TOP -->
+      <div class="card res top">
+        <div class="row gap8 mb8"><span class="chip chip-coral">N°1 puntaje edú</span><span class="chip chip-amber">Insignia 4×</span></div>
+        <div class="row gap10 mb12">
+          <div class="rc-logo" style="background:var(--coral-lt);color:var(--coral-dk)">TL</div>
+          <div><div style="font-family:'Syne';font-size:16px;font-weight:700">Trilce</div><div style="font-size:12px;color:var(--ink-mute)">Virtual ilimitado · 40 años · <span style="color:var(--amber)">★★★★★ 4.9</span> · 312 reseñas</div></div>
+        </div>
+        <div class="sc-grid">
+          <div class="sc2"><div class="sc2-v" style="color:var(--green)">16.8</div><div class="sc2-l">Nota prom.</div></div>
+          <div class="sc2"><div class="sc2-v" style="color:var(--coral)">4.9★</div><div class="sc2-l">Reseñas</div></div>
+          <div class="sc2"><div class="sc2-v" style="color:var(--amber)">4×</div><div class="sc2-l">Insignias</div></div>
+          <div class="sc2"><div class="sc2-v">4.9</div><div class="sc2-l">Puntaje edú</div></div>
+        </div>
+        <div class="row gap6 wrap-flex mb12">
+          <span class="ot ot-y"><i class="ti ti-check"></i> Clases en vivo</span>
+          <span class="ot ot-v"><i class="ti ti-video"></i> 38 videos HD</span>
+          <span class="ot ot-y"><i class="ti ti-check"></i> Resúmenes PDF</span>
+          <span class="ot ot-y"><i class="ti ti-check"></i> Simulacros</span>
+          <span class="ot ot-n">Consultas 48h</span>
+        </div>
+        <div class="between wrap-flex gap12">
+          <div><div style="font-family:'Syne';font-size:20px;font-weight:800">S/. 95 <span style="font-size:12px;color:var(--ink-mute);font-weight:400">/mes · asesoría en vivo</span></div><div style="font-size:11px;color:var(--coral)"><i class="ti ti-video"></i> Videos HD S/. 40 c/u · edú cobra 18%</div></div>
+          <button class="btn btn-coral">Ver academia</button>
+        </div>
+      </div>
+
+      <!-- RESULTADO 2 -->
+      <div class="card res">
+        <div class="row gap10 mb12">
+          <div class="rc-logo" style="background:var(--blue-lt);color:var(--blue)">PM</div>
+          <div><div style="font-family:'Syne';font-size:16px;font-weight:700">Pamer</div><div style="font-size:12px;color:var(--ink-mute)">Virtual · <span style="color:var(--amber)">★★★★☆ 4.6</span> · 188 reseñas</div></div>
+        </div>
+        <div class="sc-grid">
+          <div class="sc2"><div class="sc2-v" style="color:var(--green)">15.4</div><div class="sc2-l">Nota prom.</div></div>
+          <div class="sc2"><div class="sc2-v" style="color:var(--coral)">4.6★</div><div class="sc2-l">Reseñas</div></div>
+          <div class="sc2"><div class="sc2-v" style="color:var(--amber)">2×</div><div class="sc2-l">Insignias</div></div>
+          <div class="sc2"><div class="sc2-v">4.5</div><div class="sc2-l">Puntaje edú</div></div>
+        </div>
+        <div class="between wrap-flex gap12">
+          <div><div style="font-family:'Syne';font-size:20px;font-weight:800">S/. 80 <span style="font-size:12px;color:var(--ink-mute);font-weight:400">/mes</span></div><div style="font-size:11px;color:var(--ink-mute)"><i class="ti ti-video"></i> 24 videos HD · S/. 35 c/u</div></div>
+          <button class="btn btn-outline">Ver academia</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function selUni(el){ document.querySelectorAll('.uc').forEach(u=>u.classList.remove('sel')); el.classList.add('sel'); }
+function selQ(el){ el.parentElement.querySelectorAll('.q-opt').forEach(q=>q.classList.remove('sel')); el.classList.add('sel'); }
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>edú — Panel de academia</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css"/>
+<link rel="stylesheet" href="assets/edu.css"/>
+<style>
+.calc-row { display:grid;grid-template-columns:1fr 90px 110px 40px;gap:10px;align-items:center;padding:10px 12px;background:var(--cream);border:1px solid var(--border);border-radius:var(--r-sm);margin-bottom:8px; }
+.calc-row input { padding:7px 10px;border:1px solid var(--border-md);border-radius:6px;font-size:13px;width:100%; }
+.weight-bad { color:var(--red); }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="logo" style="font-size:28px;color:#fff;margin-bottom:14px">ed<span class="logo-dot">ú</span></div>
+      <div class="user-card"><div class="avatar" style="background:var(--blue)">TL</div><div><div style="font-size:12px;font-weight:600">Academia Trilce</div><div style="font-size:10px;color:rgba(255,255,255,.5)">Panel de academia</div></div></div>
+    </div>
+    <nav class="sb-nav">
+      <div class="nav-item on"><i class="ti ti-layout-dashboard"></i> Resumen</div>
+      <div class="nav-item"><i class="ti ti-book"></i> Mis cursos <span class="nav-badge" style="background:var(--blue)">8</span></div>
+      <div class="nav-item"><i class="ti ti-calculator"></i> Calculadora de notas</div>
+      <div class="nav-item"><i class="ti ti-video"></i> Videos HD</div>
+      <div class="nav-item"><i class="ti ti-calendar"></i> Clases en vivo</div>
+      <div class="nav-item"><i class="ti ti-users"></i> Docentes</div>
+      <div class="nav-item"><i class="ti ti-star"></i> Reseñas</div>
+      <div class="nav-item"><i class="ti ti-cash"></i> Ingresos & payouts</div>
+    </nav>
+    <div class="sb-foot"><a href="index.html" class="nav-item" style="font-size:12px"><i class="ti ti-arrow-left"></i> Volver a la propuesta</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><div class="tb-title">Resumen de la academia</div><div class="tb-sub">Trilce Virtual · Puntaje edú 4.9 · N°1 en Estadística</div></div>
+      <button class="btn btn-coral btn-sm"><i class="ti ti-plus"></i> Nuevo curso</button>
+    </header>
+    <div class="content">
+      <!-- KPIs -->
+      <div class="grid grid-4 mb24">
+        <div class="stat-tile"><div class="stat-l">Ingresos del mes</div><div class="stat-v" style="color:var(--green)">S/. 38.4k</div><div style="font-size:11px;color:var(--green)">↑ 12% vs. mes anterior · neto 82%</div></div>
+        <div class="stat-tile"><div class="stat-l">Alumnos activos</div><div class="stat-v" style="color:var(--coral)">1,284</div><div style="font-size:11px;color:var(--ink-mute)">en 8 cursos</div></div>
+        <div class="stat-tile"><div class="stat-l">Nota promedio</div><div class="stat-v" style="color:var(--blue)">16.8</div><div style="font-size:11px;color:var(--ink-mute)">de tus alumnos</div></div>
+        <div class="stat-tile"><div class="stat-l">Puntaje edú</div><div class="stat-v" style="color:var(--amber)">4.9 ★</div><div style="font-size:11px;color:var(--ink-mute)">312 reseñas</div></div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1.4fr 1fr">
+        <!-- CONFIG CALCULADORA -->
+        <div class="card card-pad">
+          <div class="between mb16">
+            <div><div class="sl" style="margin:0"><i class="ti ti-calculator" style="color:var(--coral)"></i> Configurar calculadora — Estadística</div></div>
+            <span class="chip chip-green"><i class="ti ti-check"></i> Suma 100%</span>
+          </div>
+          <div class="calc-row" style="background:var(--white);font-size:11px;font-weight:700;color:var(--ink-mute);text-transform:uppercase;letter-spacing:.05em"><span>Evaluación</span><span>Peso %</span><span>Tipo</span><span></span></div>
+          <div class="calc-row"><input value="Práctica Calificada 1"><input value="25" type="number"><select class="field" style="padding:7px 8px"><option>Elimina menor</option><option>Promedio</option></select><i class="ti ti-trash" style="color:var(--ink-mute);cursor:pointer"></i></div>
+          <div class="calc-row"><input value="Práctica Calificada 2"><input value="25" type="number"><select class="field" style="padding:7px 8px"><option>Promedio</option></select><i class="ti ti-trash" style="color:var(--ink-mute);cursor:pointer"></i></div>
+          <div class="calc-row"><input value="Práctica Calificada 3"><input value="25" type="number"><select class="field" style="padding:7px 8px"><option>Promedio</option></select><i class="ti ti-trash" style="color:var(--ink-mute);cursor:pointer"></i></div>
+          <div class="calc-row"><input value="Examen Final"><input value="25" type="number"><select class="field" style="padding:7px 8px"><option>Obligatorio</option></select><i class="ti ti-trash" style="color:var(--ink-mute);cursor:pointer"></i></div>
+          <div class="row gap8 mt12"><button class="btn btn-outline btn-sm"><i class="ti ti-plus"></i> Añadir evaluación</button><button class="btn btn-coral btn-sm">Guardar calculadora</button></div>
+          <div style="font-size:11.5px;color:var(--ink-mute);margin-top:10px"><i class="ti ti-info-circle"></i> Tus 1,284 alumnos usarán esta configuración automáticamente desde el día 1.</div>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="card card-pad">
+          <div class="sl"><i class="ti ti-checklist" style="color:var(--coral)"></i> Compromisos edú</div>
+          <div class="col gap12">
+            <div class="row gap10"><i class="ti ti-circle-check" style="color:var(--green);font-size:20px"></i><div class="grow"><div style="font-size:13px;font-weight:600">Calculadora configurada</div><div style="font-size:11px;color:var(--ink-mute)">8 / 8 cursos</div></div></div>
+            <div class="row gap10"><i class="ti ti-circle-check" style="color:var(--green);font-size:20px"></i><div class="grow"><div style="font-size:13px;font-weight:600">5 videos HD por curso</div><div style="font-size:11px;color:var(--ink-mute)">38 videos subidos</div></div></div>
+            <div class="row gap10"><i class="ti ti-progress" style="color:var(--amber);font-size:20px"></i><div class="grow"><div style="font-size:13px;font-weight:600">Links de clase en chat</div><div style="font-size:11px;color:var(--ink-mute)">2 cursos sin link de hoy</div></div></div>
+            <div class="row gap10"><i class="ti ti-circle-check" style="color:var(--green);font-size:20px"></i><div class="grow"><div style="font-size:13px;font-weight:600">CV de docentes</div><div style="font-size:11px;color:var(--ink-mute)">12 / 12 verificados</div></div></div>
+            <div class="row gap10"><i class="ti ti-circle-check" style="color:var(--green);font-size:20px"></i><div class="grow"><div style="font-size:13px;font-weight:600">Reseñas públicas activas</div><div style="font-size:11px;color:var(--ink-mute)">aceptado</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLA CURSOS -->
+      <div class="card mt24">
+        <div class="card-pad between"><div class="sl" style="margin:0"><i class="ti ti-book" style="color:var(--coral)"></i> Mis cursos</div><button class="btn btn-outline btn-sm">Ver todos</button></div>
+        <table class="tbl">
+          <thead><tr><th>Curso</th><th>Alumnos</th><th>Nota prom.</th><th>Videos HD</th><th>Ingreso/mes</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Estadística para Negocios</strong></td><td>312</td><td style="color:var(--green);font-weight:700">16.8</td><td>38</td><td>S/. 12.4k</td><td><span class="chip chip-green">Activo</span></td></tr>
+            <tr><td><strong>Microeconomía</strong></td><td>248</td><td style="color:var(--green);font-weight:700">16.2</td><td>31</td><td>S/. 9.1k</td><td><span class="chip chip-green">Activo</span></td></tr>
+            <tr><td><strong>Contabilidad Financiera</strong></td><td>189</td><td style="color:var(--amber);font-weight:700">14.1</td><td>22</td><td>S/. 7.3k</td><td><span class="chip chip-amber">Faltan videos</span></td></tr>
+            <tr><td><strong>Cálculo I</strong></td><td>156</td><td style="color:var(--amber);font-weight:700">13.5</td><td>18</td><td>S/. 5.8k</td><td><span class="chip chip-red">Sin link hoy</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

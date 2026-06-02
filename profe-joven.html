@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>edú — Profe joven & Clase Flash</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css"/>
+<link rel="stylesheet" href="assets/edu.css"/>
+<style>
+.search-wrap { display:flex;gap:10px;margin-bottom:16px;align-items:center;background:var(--white);border:1px solid var(--red);border-radius:var(--r-lg);padding:6px 6px 6px 16px;box-shadow:0 2px 8px rgba(217,59,59,.1); }
+.search-wrap input { flex:1;border:none;outline:none;font-size:14px; }
+.pj { padding:16px;margin-bottom:12px; }
+.pj.flash { border:1.5px solid var(--red); }
+.pj-av { width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans';font-weight:800;font-size:15px;flex-shrink:0; }
+.flash-badge { display:inline-flex;align-items:center;gap:4px;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px; }
+.ot { font-size:11px;padding:5px 10px;border-radius:99px;background:var(--green-lt);color:var(--green-dk);display:inline-flex;gap:4px;align-items:center; }
+.toggle { display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:99px;font-size:12px;font-weight:600; }
+.tg-sw { width:34px;height:18px;border-radius:99px;background:var(--red);position:relative; }
+.tg-sw::after { content:'';position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#fff; }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="logo" style="font-size:28px;color:#fff;margin-bottom:14px">ed<span class="logo-dot">ú</span></div>
+      <div class="user-card"><div class="avatar">AV</div><div><div style="font-size:12px;font-weight:600">Andrea Vargas</div><div style="font-size:10px;color:rgba(255,255,255,.5)">Administración · UP</div></div></div>
+    </div>
+    <nav class="sb-nav">
+      <a href="buscar-academia.html" class="nav-item"><i class="ti ti-search"></i> Buscar academia</a>
+      <a href="dashboard-alumno.html" class="nav-item"><i class="ti ti-layout-dashboard"></i> Mis cursos <span class="nav-badge">2</span></a>
+      <a href="banco-examenes.html" class="nav-item"><i class="ti ti-clipboard-list"></i> Banco de exámenes</a>
+      <div class="nav-item on"><i class="ti ti-bolt"></i> Profe joven <span class="nav-badge">6</span></div>
+      <a href="login.html" class="nav-item"><i class="ti ti-user-plus"></i> Únete a edú</a>
+    </nav>
+    <div class="sb-foot"><a href="index.html" class="nav-item" style="font-size:12px"><i class="ti ti-arrow-left"></i> Volver a la propuesta</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div><div class="tb-title">Profe joven</div><div class="tb-sub">Clase Flash disponible · 6 listos ahora mismo</div></div>
+      <div class="toggle">Modo Flash <span class="tg-sw"></span></div>
+    </header>
+    <div class="content">
+      <div class="search-wrap">
+        <i class="ti ti-search" style="color:var(--red);font-size:18px"></i>
+        <input value="Cálculo I" placeholder="¿Qué curso necesitas?">
+        <button class="btn btn-red">Buscar</button>
+      </div>
+      <div style="padding:11px 14px;background:var(--red-lt);border:1px solid var(--red);border-radius:var(--r-md);margin-bottom:16px;font-size:12.5px;color:var(--red)">
+        <strong><i class="ti ti-bolt"></i> Clase Flash</strong> = profe joven disponible ahora mismo o hoy. Responde en minutos. Ideal justo antes del parcial.
+      </div>
+
+      <!-- FLASH 1 -->
+      <div class="card pj flash">
+        <div class="row gap10 mb8" style="align-items:flex-start">
+          <div class="pj-av" style="background:var(--red-lt);color:var(--red)">CM</div>
+          <div class="grow"><div class="row gap8 wrap-flex"><strong style="font-size:15px">Carlos Medina</strong><span class="flash-badge"><i class="ti ti-bolt"></i> Flash ahora</span></div><div style="font-size:12px;color:var(--ink-mute);margin-top:3px">UTEC · Ing. Industrial · 6to ciclo · Cálculo I: 18.5/20 · ★★★★★ 4.9 · 23 sesiones</div></div>
+        </div>
+        <div class="row gap6 wrap-flex mb12"><span class="ot">1 a 1</span><span class="ot">Grupal ≤3</span><span class="ot">Apuntes propios</span><span class="ot" style="background:var(--red-lt);color:var(--red)"><i class="ti ti-bolt"></i> Hasta 10pm</span></div>
+        <div class="between wrap-flex gap12">
+          <div><div style="font-family:'Syne';font-size:20px;font-weight:800">S/. 35/hr</div><div style="font-size:11px;color:var(--ink-mute)">edú cobra 20% de comisión</div></div>
+          <div class="row gap8"><button class="btn btn-red">Flash ahora</button><button class="btn btn-outline">Agendar</button></div>
+        </div>
+      </div>
+
+      <!-- FLASH 2 -->
+      <div class="card pj flash">
+        <div class="row gap10 mb8" style="align-items:flex-start">
+          <div class="pj-av" style="background:var(--coral-lt);color:var(--coral-dk)">AS</div>
+          <div class="grow"><div class="row gap8 wrap-flex"><strong style="font-size:15px">Ana Solano</strong><span class="flash-badge"><i class="ti ti-bolt"></i> Flash hasta 9pm</span><span class="chip chip-green">Top tutora</span></div><div style="font-size:12px;color:var(--ink-mute);margin-top:3px">PUCP · Ing. Civil · 7mo ciclo · Cálculo I: 19.0/20 · ★★★★★ 5.0 · 41 sesiones</div></div>
+        </div>
+        <div class="row gap6 wrap-flex mb12"><span class="ot">1 a 1</span><span class="ot">Fichas resumen</span><span class="ot">Simulacros rápidos</span></div>
+        <div class="between wrap-flex gap12">
+          <div><div style="font-family:'Syne';font-size:20px;font-weight:800">S/. 45/hr</div><div style="font-size:11px;color:var(--ink-mute)">edú cobra 20% de comisión</div></div>
+          <div class="row gap8"><button class="btn btn-red">Flash ahora</button><button class="btn btn-outline">Agendar</button></div>
+        </div>
+      </div>
+
+      <!-- AGENDA -->
+      <div class="card pj">
+        <div class="row gap10 mb12" style="align-items:flex-start">
+          <div class="pj-av" style="background:var(--green-lt);color:var(--green-dk)">LR</div>
+          <div class="grow"><div class="row gap8"><strong style="font-size:15px">Lucía Ramos</strong><span class="chip chip-sand">Solo agenda cita</span></div><div style="font-size:12px;color:var(--ink-mute);margin-top:3px">U. del Pacífico · Economía · 5to ciclo · Cálculo I: 17.2/20 · ★★★★☆ 4.8 · 17 sesiones</div></div>
+        </div>
+        <div class="between wrap-flex gap12">
+          <div><div style="font-family:'Syne';font-size:20px;font-weight:800">S/. 30/hr</div><div style="font-size:11px;color:var(--ink-mute)">edú cobra 20% de comisión</div></div>
+          <button class="btn btn-ink">Agendar sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

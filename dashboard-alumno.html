@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>edú — Mis cursos (Alumno)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.1.0/dist/tabler-icons.min.css"/>
+<link rel="stylesheet" href="assets/edu.css"/>
+<style>
+.alert { display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--r-lg);border:1px solid;margin-bottom:18px; }
+/* curso */
+.course { margin-bottom:14px; overflow:hidden; border-left:4px solid; }
+.c-head { display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer;transition:background .15s; }
+.c-head:hover { background:var(--cream); }
+.c-ico { width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:15px;flex-shrink:0; }
+.c-name { font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700; }
+.c-meta { font-size:12px;color:var(--ink-mute);margin-top:2px; }
+.nota { font-family:'Plus Jakarta Sans',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.04em; }
+.nota-d { font-size:11px;color:var(--ink-mute); }
+.need { font-size:11px;font-weight:600;margin-top:3px;white-space:nowrap; }
+.chev { font-size:18px;color:var(--ink-mute);transition:transform .22s; }
+.chev.open { transform:rotate(180deg); }
+.panel { display:none;border-top:1px solid var(--border); }
+.panel.open { display:block; }
+.tabs { display:flex;background:var(--cream);border-bottom:1px solid var(--border);overflow-x:auto; }
+.tab { padding:11px 18px;font-size:12.5px;font-weight:600;cursor:pointer;color:var(--ink-mute);border-bottom:2px solid transparent;white-space:nowrap; }
+.tab.on { color:var(--coral);border-bottom-color:var(--coral);background:var(--white); }
+.tp { display:none;padding:18px; }
+.tp.on { display:block; }
+/* calc */
+.calc { border:1px solid var(--border);border-radius:var(--r-md);padding:16px;background:var(--cream); }
+.calc-hd { display:flex;justify-content:space-between;align-items:center;margin-bottom:12px; }
+.ni { display:grid;grid-template-columns:90px 48px 1fr 120px;gap:10px;align-items:center;padding:9px 12px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-sm);margin-bottom:6px; }
+.ni-l { font-size:12px;font-weight:600; }
+.ni-w { font-size:11px;color:var(--ink-mute); }
+.ni-i { width:100%;padding:6px 8px;border:1px solid var(--border-md);border-radius:6px;font-size:13px;text-align:center;font-family:'Inter';font-variant-numeric:tabular-nums; }
+.ni-s { font-size:11px;font-weight:600;text-align:right; }
+.need-box { padding:12px 14px;border-radius:var(--r-md);font-size:12.5px;font-weight:600;margin-top:12px; }
+/* schedule */
+.sg { display:grid;grid-template-columns:44px repeat(7,1fr);font-size:10px;min-width:560px; }
+.sh { text-align:center;padding:6px 2px;font-weight:700;color:var(--ink-mute);text-transform:uppercase;background:var(--cream);border-bottom:1px solid var(--border);font-size:9px; }
+.st { padding:4px;color:var(--ink-mute);text-align:right;border-right:1px solid var(--border);background:var(--cream);font-size:9px; }
+.sc { padding:3px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-height:30px; }
+.slot { border-radius:5px;padding:4px 5px;font-size:9px;font-weight:600;line-height:1.3; }
+.slot-u { background:var(--blue-lt);color:var(--blue); }
+.slot-e { background:var(--coral-lt);color:var(--coral-dk); }
+.slot-live { background:var(--coral);color:#fff;animation:livepulse 2s infinite; }
+/* material */
+.mat { border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:8px;overflow:hidden; }
+.mat-h { display:flex;justify-content:space-between;align-items:center;padding:12px 14px;cursor:pointer; }
+.mi { display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--border); }
+.mi-ico { width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+/* chat */
+.chat { border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden; }
+.chat-hd { background:var(--ink);color:#fff;padding:11px 14px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600; }
+.chat-msgs { padding:14px;display:flex;flex-direction:column;gap:10px;max-height:260px;overflow-y:auto;background:var(--cream); }
+.msg { display:flex;gap:8px;max-width:80%; }
+.msg.me { margin-left:auto;flex-direction:row-reverse; }
+.m-av { width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0; }
+.m-bub { background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);padding:8px 11px; }
+.msg.me .m-bub { background:var(--coral-lt); }
+.m-name { font-size:11px;font-weight:700;margin-bottom:2px; }
+.m-txt { font-size:12.5px; }
+.m-time { font-size:9px;color:var(--ink-mute);margin-top:3px; }
+.chat-in { display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--border); }
+.chat-in input { flex:1;border:1px solid var(--border-md);border-radius:99px;padding:9px 14px;font-size:13px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="logo" style="font-size:28px;color:#fff;margin-bottom:14px">ed<span class="logo-dot">ú</span></div>
+      <div class="user-card">
+        <div class="avatar">AV</div>
+        <div><div style="font-size:12px;font-weight:600">Andrea Vargas</div><div style="font-size:10px;color:rgba(255,255,255,.5)">Administración · UP · 2025-2</div></div>
+      </div>
+    </div>
+    <nav class="sb-nav">
+      <a href="buscar-academia.html" class="nav-item"><i class="ti ti-search"></i> Buscar academia</a>
+      <div class="nav-item on"><i class="ti ti-layout-dashboard"></i> Mis cursos <span class="nav-badge">2</span></div>
+      <a href="banco-examenes.html" class="nav-item"><i class="ti ti-clipboard-list"></i> Banco de exámenes <span class="nav-badge" style="background:var(--green)">New</span></a>
+      <a href="profe-joven.html" class="nav-item"><i class="ti ti-bolt"></i> Profe joven <span class="nav-badge">6</span></a>
+      <a href="login.html" class="nav-item"><i class="ti ti-user-plus"></i> Únete a edú</a>
+
+      <div class="sb-lbl">Mis cursos</div>
+      <div class="nav-item" style="padding:8px 12px"><span class="live-dot"></span> Estadística · <span style="color:var(--coral);font-size:11px">en vivo</span></div>
+      <div class="nav-item" style="padding:8px 12px"><span style="width:8px;height:8px;border-radius:50%;background:var(--amber)"></span> Contabilidad Fin.</div>
+      <div class="nav-item" style="padding:8px 12px"><span style="width:8px;height:8px;border-radius:50%;background:var(--red)"></span> Cálculo I ⚠</div>
+      <div class="nav-item" style="padding:8px 12px"><span style="width:8px;height:8px;border-radius:50%;background:var(--green)"></span> Microeconomía ★</div>
+    </nav>
+    <div class="sb-foot">
+      <div class="user-card" style="background:rgba(212,144,10,.14);border-color:rgba(212,144,10,.25)">
+        <div class="avatar" style="background:var(--amber);border-radius:10px"><i class="ti ti-trophy"></i></div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--amber)">#12 · Top 5%</div><div style="font-size:10px;color:rgba(255,255,255,.5)">Candidata a insignia edú</div></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <div class="tb-title">Mis cursos</div>
+        <div class="tb-sub">U. del Pacífico · Administración · Ciclo 2025-2</div>
+      </div>
+      <div class="row gap8">
+        <span class="chip chip-amber"><i class="ti ti-trophy"></i> Insignia: pollo + fest + cupones</span>
+        <span class="chip chip-red"><i class="ti ti-flame"></i> 2 en riesgo</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- ALERT -->
+      <div class="alert" style="background:var(--red-lt);border-color:var(--red)">
+        <i class="ti ti-flame" style="color:var(--red);font-size:20px"></i>
+        <div class="grow"><strong style="color:var(--red);font-size:13px">Cálculo I en zona crítica</strong> <span style="color:var(--red);font-size:12px;opacity:.85">— 10.5/20, sin academia contratada aún</span></div>
+        <a href="buscar-academia.html" class="btn btn-coral btn-sm">Buscar academia</a>
+      </div>
+
+      <!-- HORARIO -->
+      <div class="card mb16">
+        <div class="c-head" onclick="tg('sched')">
+          <i class="ti ti-calendar" style="color:var(--coral);font-size:20px"></i>
+          <div class="grow"><div style="font-size:14px;font-weight:700">Horario semanal — Universidad + edú</div></div>
+          <span class="chip chip-blue">Clase UP</span><span class="chip chip-coral">edú</span><span class="chip chip-ink">⬤ En vivo</span>
+        </div>
+        <div id="sched" style="display:none;padding:14px;overflow-x:auto">
+          <div class="sg">
+            <div class="sh"></div><div class="sh">Lun</div><div class="sh">Mar</div><div class="sh">Mié</div><div class="sh">Jue</div><div class="sh">Vie</div><div class="sh">Sáb</div><div class="sh">Dom</div>
+            <div class="st">7a</div><div class="sc"><div class="slot slot-u">Micro UP</div></div><div class="sc"></div><div class="sc"><div class="slot slot-u">Der. UP</div></div><div class="sc"></div><div class="sc"></div><div class="sc"></div><div class="sc"></div>
+            <div class="st">8a</div><div class="sc"></div><div class="sc"><div class="slot slot-u">Cálc. UP</div></div><div class="sc"></div><div class="sc"><div class="slot slot-u">Micro UP</div></div><div class="sc"><div class="slot slot-u">Conta UP</div></div><div class="sc"></div><div class="sc"></div>
+            <div class="st">6p</div><div class="sc"></div><div class="sc"><div class="slot slot-e">Conta edú</div></div><div class="sc"></div><div class="sc"><div class="slot slot-e">Conta edú</div></div><div class="sc"></div><div class="sc"></div><div class="sc"></div>
+            <div class="st">7p</div><div class="sc"><div class="slot slot-live">⬤ Estad.</div></div><div class="sc"></div><div class="sc"><div class="slot slot-e">Estad edú</div></div><div class="sc"></div><div class="sc"><div class="slot slot-e">Micro edú</div></div><div class="sc"><div class="slot slot-e">Repaso</div></div><div class="sc"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C1 ESTADÍSTICA -->
+      <div class="card course" style="border-left-color:var(--coral)">
+        <div class="c-head" onclick="tgCourse('c1')">
+          <div class="c-ico" style="background:var(--coral-lt);color:var(--coral-dk)">ES</div>
+          <div class="grow"><div class="c-name">Estadística para Negocios</div><div class="c-meta">4 créditos · Trilce Virtual · <span style="color:var(--coral);font-weight:600"><i class="ti ti-radio" style="font-size:10px"></i> En vivo hoy 7pm</span></div></div>
+          <div style="text-align:right"><div><span class="nota" style="color:var(--coral)">15.3</span><span class="nota-d"> /20</span></div><div class="pb" style="width:70px;margin:4px 0 0 auto"><div class="pb-fill" style="width:76%;background:var(--coral)"></div></div><div class="need" style="color:var(--green)">Necesitas 13 ✓</div></div>
+          <i class="ti ti-chevron-down chev open" id="chev-c1"></i>
+        </div>
+        <div class="panel open" id="panel-c1">
+          <div class="tabs">
+            <div class="tab on" onclick="st('c1','prog',this)"><i class="ti ti-chart-bar"></i> Progreso</div>
+            <div class="tab" onclick="st('c1','clase',this)"><i class="ti ti-video"></i> Clase</div>
+            <div class="tab" onclick="st('c1','anun',this)"><i class="ti ti-bell"></i> Anuncios</div>
+            <div class="tab" onclick="st('c1','mat',this)"><i class="ti ti-folder"></i> Material</div>
+            <div class="tab" onclick="st('c1','chat',this)"><i class="ti ti-message-circle"></i> Chat</div>
+          </div>
+          <!-- PROGRESO -->
+          <div class="tp on" id="c1-prog">
+            <div class="calc">
+              <div class="calc-hd"><strong style="font-size:13px">Calculadora de notas</strong><span class="chip chip-coral"><i class="ti ti-building"></i> Configurada por Trilce</span></div>
+              <div class="ni"><span class="ni-l">PC 1</span><span class="ni-w">25%</span><input class="ni-i" value="18"><span class="ni-s" style="color:var(--green)">✓ Aprobado</span></div>
+              <div class="ni"><span class="ni-l">PC 2</span><span class="ni-w">25%</span><input class="ni-i" value="14"><span class="ni-s" style="color:var(--amber)">Aprobado</span></div>
+              <div class="ni"><span class="ni-l">PC 3</span><span class="ni-w">25%</span><input class="ni-i" value="16"><span class="ni-s" style="color:var(--green)">✓ Aprobado</span></div>
+              <div class="ni" style="border-style:dashed;background:var(--cream)"><span class="ni-l" style="color:var(--ink-mute)">Final</span><span class="ni-w">25%</span><input class="ni-i" placeholder="—" style="background:var(--sand)"><span class="ni-s" style="color:var(--ink-mute)">Pendiente</span></div>
+              <div class="need-box" style="background:var(--green-lt);color:var(--green-dk)">Necesitas solo 13 en el examen final para aprobar con 14 ✓</div>
+            </div>
+            <div class="grid grid-3 mt16">
+              <div class="stat-tile"><div class="stat-v" style="color:var(--coral)">15.3</div><div class="stat-l">Nota actual</div></div>
+              <div class="stat-tile"><div class="stat-v">76%</div><div class="stat-l">Avance ciclo</div></div>
+              <div class="stat-tile"><div class="stat-v" style="color:var(--amber)">★ Top</div><div class="stat-l">Insignia candidata</div></div>
+            </div>
+          </div>
+          <!-- CLASE -->
+          <div class="tp" id="c1-clase">
+            <div class="card-pad card" style="display:flex;align-items:center;gap:12px;background:var(--coral-lt);border-color:var(--coral)">
+              <i class="ti ti-video" style="font-size:24px;color:var(--coral)"></i>
+              <div class="grow"><div style="font-weight:700;font-size:13px">Clase en vivo — hoy lunes 7:00 pm</div><div style="font-size:12px;color:var(--ink-mute)">Prof. Renzo Ponce · Trilce · El link está en el chat del curso</div></div>
+              <button class="btn btn-coral btn-sm">Abrir Meet</button>
+            </div>
+            <div class="card card-pad mt12 between"><span style="font-size:13px;font-weight:600">Miércoles 7pm · Distribución normal</span><span class="chip chip-coral">En 2 días</span></div>
+            <div class="card card-pad mt8 between"><span style="font-size:13px;font-weight:600">Sábado 9am · Simulacro PC2</span><span class="chip chip-coral">En 5 días</span></div>
+          </div>
+          <!-- ANUNCIOS -->
+          <div class="tp" id="c1-anun">
+            <div class="card card-pad mb8"><strong style="font-size:13px">PC2 próxima semana — distribución normal entra</strong><p style="font-size:12.5px;color:var(--ink-mute);margin-top:4px">Simulacro del sábado es clave. Descarga el material de la semana 3 antes del miércoles.</p><div style="font-size:11px;color:var(--ink-mute);margin-top:6px">Prof. Renzo Ponce · hace 2 horas</div></div>
+            <div class="card card-pad" style="background:var(--green-lt);border-color:var(--green)"><strong style="font-size:13px;color:var(--green-dk)">Video HD semana 2 disponible</strong><p style="font-size:12.5px;color:var(--green-dk);margin-top:4px">Distribución de frecuencias — 2h 15min. Disponible en Material.</p><div style="font-size:11px;color:var(--green-dk);margin-top:6px">Trilce edú · ayer</div></div>
+          </div>
+          <!-- MATERIAL -->
+          <div class="tp" id="c1-mat">
+            <div class="mat">
+              <div class="mat-h" onclick="tg('m1')"><div><div style="font-size:13px;font-weight:700">Semana 1–2 · Estadística descriptiva</div><div style="font-size:11px;color:var(--ink-mute)">Media, mediana, varianza · Gráficas</div></div><span class="chip chip-green">Completado</span></div>
+              <div id="m1">
+                <div class="mi"><div class="mi-ico" style="background:var(--coral-lt)"><i class="ti ti-file-text" style="color:var(--coral)"></i></div><div class="grow"><div style="font-size:13px;font-weight:600">Resumen: tendencia central</div><div style="font-size:11px;color:var(--ink-mute)">PDF · 8 págs · Trilce</div></div><button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> PDF</button></div>
+                <div class="mi"><div class="mi-ico" style="background:var(--green-lt)"><i class="ti ti-player-play" style="color:var(--green)"></i></div><div class="grow"><div style="font-size:13px;font-weight:600">Video HD: distribución de frecuencias</div><div style="font-size:11px;color:var(--ink-mute)">2h 15min · Prof. Renzo Ponce · HD oficial</div></div><button class="btn btn-green btn-sm">Ver</button></div>
+              </div>
+            </div>
+            <div class="mat">
+              <div class="mat-h" onclick="tg('m2')"><div><div style="font-size:13px;font-weight:700">Semana 3–4 · Probabilidad</div><div style="font-size:11px;color:var(--ink-mute)">Axiomas · Bayes · Condicional</div></div><span class="chip chip-coral">En curso</span></div>
+              <div id="m2" style="display:none">
+                <div class="mi"><div class="mi-ico" style="background:var(--coral-lt)"><i class="ti ti-file-text" style="color:var(--coral)"></i></div><div class="grow"><div style="font-size:13px;font-weight:600">Resumen: Bayes</div><div style="font-size:11px;color:var(--ink-mute)">PDF · 6 págs</div></div><button class="btn btn-outline btn-sm"><i class="ti ti-download"></i> PDF</button></div>
+              </div>
+            </div>
+            <div class="mat" style="opacity:.6"><div class="mat-h"><div><div style="font-size:13px;font-weight:700">Semana 5–6 · Distribuciones</div><div style="font-size:11px;color:var(--ink-mute)">Binomial · Normal · Poisson</div></div><span class="chip chip-sand"><i class="ti ti-lock" style="font-size:11px"></i> Bloqueado</span></div></div>
+          </div>
+          <!-- CHAT -->
+          <div class="tp" id="c1-chat">
+            <div class="chat">
+              <div class="chat-hd"><i class="ti ti-message-circle"></i> Estadística · Trilce <span style="font-weight:400;color:rgba(255,255,255,.5);font-size:11px">· 23 en línea</span></div>
+              <div class="chat-msgs">
+                <div class="msg"><div class="m-av" style="background:var(--green-lt);color:var(--green-dk)">LR</div><div class="m-bub"><div class="m-name" style="color:var(--green-dk)">Lucía R.</div><div class="m-txt">¿Alguien entendió el ejercicio 4 de Bayes?</div><div class="m-time">7:12pm</div></div></div>
+                <div class="msg"><div class="m-av" style="background:var(--coral);color:#fff">TL</div><div class="m-bub"><div class="m-name" style="color:var(--coral-dk)">Trilce</div><div class="m-txt">🔗 Link clase hoy 7pm: meet.google.com/abc-xyz-edu</div><div class="m-time">6:45pm</div></div></div>
+                <div class="msg me"><div class="m-av" style="background:var(--coral);color:#fff">AV</div><div class="m-bub"><div class="m-name">Tú</div><div class="m-txt">El video HD de distribución normal está increíble 🙌</div><div class="m-time">7:20pm</div></div></div>
+              </div>
+              <div class="chat-in"><input placeholder="Escribe a tus compañeros…"><button class="btn btn-coral btn-sm"><i class="ti ti-send"></i></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C2 CÁLCULO (riesgo) -->
+      <div class="card course" style="border-left-color:var(--red)">
+        <div class="c-head" onclick="tgCourse('c2')">
+          <div class="c-ico" style="background:var(--red-lt);color:var(--red)">CI</div>
+          <div class="grow"><div class="c-name">Cálculo I</div><div class="c-meta">5 créditos · Sin academia contratada</div></div>
+          <div style="text-align:right"><div><span class="nota" style="color:var(--red)">10.5</span><span class="nota-d"> /20</span></div><div class="pb" style="width:70px;margin:4px 0 0 auto"><div class="pb-fill" style="width:52%;background:var(--red)"></div></div><div class="need" style="color:var(--red)">Riesgo crítico 🔥</div></div>
+          <i class="ti ti-chevron-down chev" id="chev-c2"></i>
+        </div>
+        <div class="panel" id="panel-c2">
+          <div class="tp on" style="display:block;padding:18px">
+            <div class="calc" style="border-color:var(--red);background:var(--red-lt)">
+              <div class="calc-hd"><strong style="font-size:13px;color:var(--red)">Sin academia — ingresa tus notas manualmente</strong></div>
+              <div class="ni"><span class="ni-l">PC 1</span><span class="ni-w">25%</span><input class="ni-i" value="11"><span class="ni-s" style="color:var(--red)">Bajo ⚠</span></div>
+              <div class="ni"><span class="ni-l">PC 2</span><span class="ni-w">25%</span><input class="ni-i" value="10"><span class="ni-s" style="color:var(--red)">Bajo ⚠</span></div>
+              <div class="need-box" style="background:var(--red);color:#fff">⚠ Necesitas 17 en PC3 y 18 en el final. Busca ayuda ya.</div>
+            </div>
+            <div class="row gap8 mt16">
+              <a href="buscar-academia.html" class="btn btn-coral">Buscar academia</a>
+              <a href="profe-joven.html" class="btn btn-ink">Clase Flash ahora</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C3 MICRO (premio) -->
+      <div class="card course" style="border-left-color:var(--green)">
+        <div class="c-head" onclick="tgCourse('c3')">
+          <div class="c-ico" style="background:var(--green-lt);color:var(--green-dk)">MI</div>
+          <div class="grow"><div class="c-name">Microeconomía</div><div class="c-meta">4 créditos · Trilce Virtual · Vie 7pm</div></div>
+          <div style="text-align:right"><div><span class="nota" style="color:var(--green)">16.8</span><span class="nota-d"> /20</span></div><div class="pb" style="width:70px;margin:4px 0 0 auto"><div class="pb-fill" style="width:84%;background:var(--green)"></div></div><div class="need" style="color:var(--amber)">Candidata insignia ★</div></div>
+          <i class="ti ti-chevron-down chev" id="chev-c3"></i>
+        </div>
+        <div class="panel" id="panel-c3">
+          <div class="tp on" style="display:block;padding:18px">
+            <div class="calc" style="border-color:var(--green)">
+              <div class="calc-hd"><strong style="font-size:13px">Calculadora de notas</strong><span class="chip chip-coral"><i class="ti ti-building"></i> Configurada por Trilce</span></div>
+              <div class="ni"><span class="ni-l">PC 1</span><span class="ni-w">25%</span><input class="ni-i" value="17"><span class="ni-s" style="color:var(--green)">✓ Excelente</span></div>
+              <div class="ni"><span class="ni-l">PC 2</span><span class="ni-w">25%</span><input class="ni-i" value="16"><span class="ni-s" style="color:var(--green)">✓ Muy bien</span></div>
+              <div class="ni"><span class="ni-l">PC 3</span><span class="ni-w">25%</span><input class="ni-i" value="18"><span class="ni-s" style="color:var(--green)">✓ Sobresaliente</span></div>
+              <div class="need-box" style="background:var(--green-lt);color:var(--green-dk)">Solo necesitas 14 en el final. ¡En carrera por el premio insignia ★ — cuarto de pollo + entrada eduFest!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function tg(id){ const e=document.getElementById(id); e.style.display = e.style.display==='none'?'block':'none'; }
+function tgCourse(id){ document.getElementById('panel-'+id).classList.toggle('open'); document.getElementById('chev-'+id).classList.toggle('open'); }
+function st(c,t,el){ const p=document.getElementById('panel-'+c); p.querySelectorAll('.tab').forEach(x=>x.classList.remove('on')); p.querySelectorAll('.tp').forEach(x=>x.classList.remove('on')); el.classList.add('on'); document.getElementById(c+'-'+t).classList.add('on'); }
+</script>
+</body>
+</html>
